@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" async="" src="Mocodo%20online_fichiers/ga.js"></script><script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-1925109-8']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</head><body><a href="https://github.com/laowantong/mocodo"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="Mocodo%20online_fichiers/right-white2x.png" alt="Fork me on GitHub"></a>
+<title>Mocodo online</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="Mocodo%20online_fichiers/reset.css">
+<link rel="stylesheet" href="Mocodo%20online_fichiers/style.css">
+<link rel="stylesheet" href="Mocodo%20online_fichiers/font-awesome.css">
+<link rel="stylesheet" href="Mocodo%20online_fichiers/css.css" type="text/css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://mocodo.wingi.net/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="http://mocodo.wingi.net/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="http://mocodo.wingi.net/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="http://mocodo.wingi.net/manifest.json">
+<link rel="mask-icon" href="http://mocodo.wingi.net/safari-pinned-tab.svg" color="#0d42ff">
+<meta name="apple-mobile-web-app-title" content="Mocodo">
+<meta name="application-name" content="Mocodo">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+<div id="wrap">
+	<div id="banner">
+	    <img src="Mocodo%20online_fichiers/mocodonline.svg">
+	</div>​
+	<form method="post" id="mainForm" action="web/download.php" autocomplete="off">
+		<input name="state" id="state" value="ready" type="hidden">
+		<input name="archiveName" id="archiveName" value="Factures.zip" type="hidden">
+		<input name="path" id="path" value="sessions/109.2.147.103-wxnqDyVoV70dwGc0-5LUR2" type="hidden">
+		<input name="guess_title" id="guess_title" value="true" type="hidden">
+		<div id="inputZone">
+			<div class="line"></div>
+			<ul class="tabs">
+				<li><a href="#aboutContents" class="first_tab"><span class="fa fa-info-circle"></span></a></li>
+				<li><a href="#inputContents" class="active"><span>Entrée</span></a></li>
+				<li><a href="#paramContents"><span>Options</span></a></li>
+				<li><a href="#geoContents" id="geoTab" style="display: inline;"><span>Retouches</span></a></li>
+			</ul>
+			<div class="pane">
+				<div id="inputButtons" class="buttons">
+					<span class="fa fa-arrows-v fa-2x customButton" id="flipHorizontallyButton" onclick="arrange(event, 'flip=h')" title="Inverser les rangées."></span>
+					<span class="fa fa-arrows-h fa-2x customButton" id="flipVerticallyButton" onclick="arrange(event, 'flip=v')" title="Inverser les colonnes."></span>
+					<span class="fa fa-arrows-v fa-2x fa-rotate-45 customButton" id="flipDiagonallyButton" onclick="arrange(event, 'flip=d')" title="Transposer colonnes et rangées."></span>
+					<span class="fa fa-random fa-2x customButton" id="arrangeButton" onclick="arrange(event, 'arrange=bb')" title="Réarranger automatiquement les boîtes (sur la grille actuelle avec SHIFT, sans contraintes avec ALT)."></span>
+				</div>
+				<div id="aboutContents" class="contents" style="display: none;">
+<p>
+	Mocodo est un logiciel d'aide à l'enseignement et à la conception de <a href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es_relationnelle">bases de données relationnelles</a>.
+	En entrée, il prend une description textuelle des entités et associations du modèle conceptuel de données (<a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_entit%C3%A9-association">MCD</a>).
+	En sortie, il produit son diagramme entité-association en <a href="https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> et son schéma relationnel (<a href="https://fr.wikipedia.org/wiki/Merise_&amp;#%2040;informatique&amp;#%2041;#Le_MLD_mod.C3.A8le_logique_des_donn.C3.A9es">MLD</a>) en <a href="https://fr.wikipedia.org/wiki/Structured_Query_Language">SQL</a>, <a href="https://fr.wikipedia.org/wiki/LaTeX"><span style="font-family: serif; font-style: normal; margin-right: -.7em;">L<span style="font-size: 0.9em; position: relative; top: -.1em; left: -0.4em;">A</span><span style="position: relative; left: -.5em;">T</span><span style="position: relative; top: .2em; left: -.6em;">E</span><span style="position: relative; left: -.7em;">X</span></span></a>, <a href="https://fr.wikipedia.org/wiki/Markdown">Markdown</a>, etc.
+</p>
+<h1>Syntaxe du texte d'entrée</h1>
+
+<h2>Principe</h2>
+<ul>
+<li>Chaque ligne constitue la définition d'une entité ou d'une association («&nbsp;boîte&nbsp;» dans la suite).</li>
+</ul>
+
+<h2>Définir une entité</h2>
+
+<pre><code>nom entité: attribut 1, attribut 2, attribut 3, ...
+</code></pre>
+
+<ul>
+<li>Un nom d'entité est séparé de ses attributs par un deux-points.</li>
+<li>Les attributs sont séparés par des virgules.</li>
+<li>Le premier attribut est par défaut l'identifiant de l'entité.</li>
+</ul>
+
+<h2>Définir une association</h2>
+
+<pre><code>nom association, 01 nom entité 1, 1N nom entité 2, ... : attribut 1, attribut 2, ...
+</code></pre>
+
+<ul>
+<li>Un nom d'association est séparé de sa première patte par une virgule.</li>
+<li>Les pattes d'une association sont séparées par des virgules.</li>
+<li>Une patte consiste en un couple de cardinalités (<code>01</code>, <code>11</code>, <code>0N</code>, <code>1N</code>) suivi du nom d'une entité.</li>
+<li>La dernière patte d'une association est séparée de ses éventuels attributs par un deux-points.</li>
+<li>Les attributs sont séparés par des virgules.</li>
+<li>Deux pattes d'une même association peuvent aboutir à une même entité (association réflexive).</li>
+</ul>
+
+<h2>Spécifier une mise en page</h2>
+
+<ul>
+<li>Les boîtes définies sur des lignes <em>consécutives</em> sont tracées sur une même rangée.</li>
+<li>Un saut de ligne commence une nouvelle rangée.</li>
+<li>Toutes les boîtes d'une même colonne sont alignées verticalement.</li>
+<li>Une ligne réduite à un deux-points insère une boîte invisible.</li>
+</ul>
+
+<h1>Principales opérations</h1>
+
+<h2>Réarranger les boîtes</h2>
+
+<ul>
+<li><i class="fa fa-arrows-v"></i> [<em>resp.</em>, <i class="fa fa-arrows-h"></i> et&nbsp; <i class="fa fa-arrows-v fa-rotate-45"></i>&nbsp;]&nbsp;: inverse le MCD verticalement [<em>resp.</em>, horizontalement et par transposition].</li>
+<li><i class="fa fa-random"></i>&nbsp;: recherche une mise en page sans 
+croisement et minimisant la longueur des liens sur la plus petite grille
+ «&nbsp;équilibrée&nbsp;» possible.</li>
+	<ul>
+		<li>Avec <kbd>SHIFT</kbd>&nbsp;: recherche contrainte par les dimensions de la grille courante.</li>
+		<li>Avec <kbd>ALT</kbd>&nbsp;: recherche non contrainte.</li>
+	</ul>
+</ul>
+
+<h2>Manipuler les schémas</h2>
+
+<ul>
+<li><i class="fa fa-refresh"></i>&nbsp;: dessine le MCD et génère le MLD à partir du texte d'entrée.</li>
+<li>Onglet «&nbsp;Retouches&nbsp;»&nbsp;: permet de modifier la position de certains éléments.</li>
+<li><i class="fa fa-download"></i>&nbsp;: récupère une archive de votre travail (entrée et sortie).</li>
+</ul>
+				</div>
+				<div id="inputContents" class="contents">
+					<div id="inputPane">
+						<div><input onchange="markAsDirty();freezeTitle();reveal()" onfocus="onFocus(this)" name="title" id="title" value="McdParking3000" onblur="onBlur(this)" autocomplete="off" title="Si vous ne donnez pas de titre à votre MCD, Mocodo essaiera d'en trouver un pour vous." type="text"></div>
+						<span id="gear" class="fa fa-cog fa-2x"></span>
+						<div><textarea onchange="markAsDirty()" name="text" id="text" wrap="off">
+
+est lié à, 11 Réservation, 11 Facture
+
+Réservation : numres, nomres, datedebres, datefinres, prixres
+Client : numtelcli, nomcli, prénomcli, emailcli, languecli, mdpcli
+paie, 0N Facture, 11 Client
+Facture : numfac, datelimfac, montantfac, statutfac
+correspond, 11 Abonnement, 01 Facture
+Abonnement : numabo, nomabo, datedebabo, datefinabo
+
+demander, 11 Réservation, 0N Client, 11 Filattente
+souscrire, 11 Abonnement, 0N Client
+
+Filattente : num
+
+
+
+
+ 
+</textarea></div>
+					</div>
+				</div>
+				<div id="paramContents" class="contents" style="display: none;">
+					<div><label class="fixedWidth" for="colors">Palette de couleurs</label><select onchange="markAsDirty();writeCookie()" name="colors" id="colors"><option>blank</option><option>bw</option><option>desert</option><option>keepsake</option><option>mondrian</option><option>ocean</option><option>pond</option><option>wb</option><option>xinnian</option><option>brewer+1</option><option>brewer-1</option><option>brewer+2</option><option>brewer-2</option><option selected="selected">brewer+3</option><option>brewer-3</option><option>brewer+4</option><option>brewer-4</option><option>brewer+5</option><option>brewer-5</option><option>brewer+6</option><option>brewer-6</option><option>brewer+7</option><option>brewer-7</option><option>brewer+8</option><option>brewer-8</option><option>brewer+9</option><option>brewer-9</option></select></div>
+					<div><label class="fixedWidth" for="shapes">Police et proportions</label><select onchange="markAsDirty();writeCookie()" name="shapes" id="shapes"><option>arial</option><option>copperplate</option><option>georgia</option><option>mondrian</option><option>sans</option><option>serif</option><option>times</option><option>trebuchet</option><option selected="selected">verdana</option><option>xinnian</option></select></div>
+					<div><label class="fixedWidth" for="flex">Inflexion des pattes trop rapprochées</label><select onchange="writeCookie()" name="flex" id="flex"><option>désactivée</option><option>peu perceptible</option><option>faible</option><option selected="selected">normale</option><option>forte</option><option>très prononcée</option></select></div>
+					<div><label class="fixedWidth" for="delays">Temps de calcul limité à </label><select onchange="writeCookie()" name="delays" id="delays"><option>15 secondes</option><option>30 secondes</option><option selected="selected">1 minute</option><option>2 minutes</option><option>4 minutes</option><option>8 minutes</option></select></div>
+					<div><label class="fixedWidth" for="disambiguation">Désambiguïsation des attributs migrants </label><select onchange="writeCookie()" name="disambiguation" id="disambiguation"><option selected="selected">annotations et numéros</option><option>numéros seulement</option></select></div>
+					<div><label class="fixedWidth" for="SQL_dialect" title="Pour générer un code SQL valide, faites suivre chaque attribut de son type entre crochets.">Dialecte SQL en sortie</label><select onchange="writeCookie()" name="SQL_dialect" id="SQL_dialect"><option selected="selected"></option><option>MySQL</option><option>Oracle</option><option>PostgreSQL</option><option>SQLite</option></select></div>
+					<div><label class="fixedWidth" for="relation_formats" title="Les formats cochés seront affichés sous l'onglet Relations et inclus dans l'archive téléchargée.">Format des relations en sortie</label> <ul name="relation_formats" id="relation_formats"><li><input name="relations[]'" value="diagram" onchange="markAsDirty();writeCookie()" type="checkbox"> <label title="Résultat à réinjecter sous l'onglet Entrée pour tracer un diagramme sagittal des relations.">Diagramme relationnel</label></li><li><input name="relations[]'" value="markdown_data_dict" onchange="markAsDirty();writeCookie()" type="checkbox"> <label title="Option placée ici par commodité: un dictionnaire des données n'a rien à voir avec un schéma relationnel.">Dictionnaire des données (Markdown)</label></li><li><input name="relations[]'" value="html_verbose" onchange="markAsDirty();writeCookie()" type="checkbox"> <label title="S'affiche également au-dessous du diagramme conceptuel.">Explications du schéma relationnel</label></li><li><input name="relations[]'" value="html" checked="checked" onchange="markAsDirty();writeCookie()" type="checkbox"> <label title="S'affiche également au-dessous du diagramme conceptuel.">HTML</label></li><li><input name="relations[]'" value="latex" onchange="markAsDirty();writeCookie()" type="checkbox"> <label><span style="font-family: serif; font-style: normal; margin-right: -.7em;">L<span style="font-size: 0.9em; position: relative; top: -.1em; left: -0.4em;">A</span><span style="position: relative; left: -.5em;">T</span><span style="position: relative; top: .2em; left: -.6em;">E</span><span style="position: relative; left: -.7em;">X</span></span></label></li><li><input name="relations[]'" value="markdown" onchange="markAsDirty();writeCookie()" type="checkbox"> <label>Markdown</label></li><li><input name="relations[]'" value="text" onchange="markAsDirty();writeCookie()" type="checkbox"> <label>Texte brut</label></li></ul></div>
+				</div>
+				<div id="geoContents" class="contents" style="display: none;">
+					<fieldset><legend>Coordonnées du centre des boîtes</legend><div id="coords"><div><label>est lié à</label> <input value="245" onfocus="markAsMoved()" name="cx0" id="cx0" min="0" type="text"> <input value="34" onfocus="markAsMoved()" name="cy0" id="cy0" min="0" type="text"> </div><div><label>Réservation</label> <input value="50" onfocus="markAsMoved()" name="cx1" id="cx1" min="0" type="text"> <input value="152" onfocus="markAsMoved()" name="cy1" id="cy1" min="0" type="text"> </div><div><label>Client</label> <input value="158" onfocus="markAsMoved()" name="cx2" id="cx2" min="0" type="text"> <input value="152" onfocus="markAsMoved()" name="cy2" id="cy2" min="0" type="text"> </div><div><label>paie</label> <input value="245" onfocus="markAsMoved()" name="cx3" id="cx3" min="0" type="text"> <input value="152" onfocus="markAsMoved()" name="cy3" id="cy3" min="0" type="text"> </div><div><label>Facture</label> <input value="350" onfocus="markAsMoved()" name="cx4" id="cx4" min="0" type="text"> <input value="152" onfocus="markAsMoved()" name="cy4" id="cy4" min="0" type="text"> </div><div><label>correspond</label> <input value="463" onfocus="markAsMoved()" name="cx5" id="cx5" min="0" type="text"> <input value="152" onfocus="markAsMoved()" name="cy5" id="cy5" min="0" type="text"> </div><div><label>Abonnement</label> <input value="580" onfocus="markAsMoved()" name="cx6" id="cx6" min="0" type="text"> <input value="152" onfocus="markAsMoved()" name="cy6" id="cy6" min="0" type="text"> </div><div><label>demander</label> <input value="245" onfocus="markAsMoved()" name="cx7" id="cx7" min="0" type="text"> <input value="270" onfocus="markAsMoved()" name="cy7" id="cy7" min="0" type="text"> </div><div><label>souscrire</label> <input value="350" onfocus="markAsMoved()" name="cx8" id="cx8" min="0" type="text"> <input value="270" onfocus="markAsMoved()" name="cy8" id="cy8" min="0" type="text"> </div><div><label>Filattente</label> <input value="245" onfocus="markAsMoved()" name="cx9" id="cx9" min="0" type="text"> <input value="345" onfocus="markAsMoved()" name="cy9" id="cy9" min="0" type="text"> </div></div></fieldset>
+					<fieldset><legend>Décalage des cardinalités</legend><div id="cards"><div><label for="shift0">est lié à,Réservation</label> <input value="0" onfocus="markAsMoved()" name="shift0" id="shift0" type="text"></div><div><label for="shift1">est lié à,Facture</label> <input value="0" onfocus="markAsMoved()" name="shift1" id="shift1" type="text"></div><div><label for="shift2">paie,Facture</label> <input value="0" onfocus="markAsMoved()" name="shift2" id="shift2" type="text"></div><div><label for="shift3">paie,Client</label> <input value="0" onfocus="markAsMoved()" name="shift3" id="shift3" type="text"></div><div><label for="shift4">correspond,Abonnement</label> <input value="0" onfocus="markAsMoved()" name="shift4" id="shift4" type="text"></div><div><label for="shift5">correspond,Facture</label> <input value="0" onfocus="markAsMoved()" name="shift5" id="shift5" type="text"></div><div><label for="shift6">demander,Réservation</label> <input value="0" onfocus="markAsMoved()" name="shift6" id="shift6" type="text"></div><div><label for="shift7">demander,Client</label> <input value="0" onfocus="markAsMoved()" name="shift7" id="shift7" type="text"></div><div><label for="shift8">demander,Filattente</label> <input value="0" onfocus="markAsMoved()" name="shift8" id="shift8" type="text"></div><div><label for="shift9">souscrire,Abonnement</label> <input value="0" onfocus="markAsMoved()" name="shift9" id="shift9" type="text"></div><div><label for="shift10">souscrire,Client</label> <input value="0" onfocus="markAsMoved()" name="shift10" id="shift10" type="text"></div></div></fieldset>
+					<fieldset><legend>Zone de rognage</legend><div id="size"><div><label>&nbsp;</label> <input value="633" onfocus="markAsMoved()" name="size_x" id="size_x" min="0" type="text"> <input value="379" onfocus="markAsMoved()" name="size_y" id="size_y" min="0" type="text"> </div></div></fieldset>
+					<fieldset><legend>Position des flèches des associations</legend><div id="arrows"></div></fieldset>
+				</div>
+			</div>
+		</div>
+		<div id="outputZone">
+			<div class="line"></div>
+			<ul class="tabs">
+				<li><a href="#diagramAndSupplementOutput" id="diagramTab" class="first_tab active"><span>Diagramme</span></a></li>
+				<li><a href="#relationalOutput"><span>Relations</span></a></li>
+				<li><a href="#errorOutput" id="errorTab" style="display: none;" class=""><span>Erreurs</span></a></li>
+			</ul>
+			<div class="pane">
+				<div id="outputButtons" class="buttons">
+						<span class="fa fa-refresh fa-2x customButton" id="generateButton" onclick="generate()" title="Générer le MCD et les relations à partir du texte d'entrée."></span>
+						<span class="fa fa-download fa-2x customButton" id="downloadButton" onclick="mainForm.submit()" title="Télécharger l'ensemble des données et des résultats." style="display: inline;"></span>
+				</div>
+				<div id="diagramAndSupplementOutput" style="display: block;">
+					<div id="diagramOutput" class="contents active"><!--?xml version="1.0" standalone="no"?-->
+
+
+<svg width="633" height="379" view_box="0 0 633 379" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.7 le Wed, 26 Sep 2018 07:59:56</desc>
+
+<rect id="frame" x="0" y="0" width="633" height="379" fill="#f7f7f7" stroke="#808080" stroke-width="1" stroke-dasharray="2,2"></rect>
+
+<!-- Association demander -->
+<line x1="50" y1="152" x2="245" y2="270" stroke="#9970ab" stroke-width="2"></line>
+<text x="96" y="173.492438941" fill="#1b7837" font-family="Verdana" font-size="12">1,1</text>
+<line x1="158" y1="152" x2="245" y2="270" stroke="#9970ab" stroke-width="2"></line>
+<text x="198" y="197.047082534" fill="#1b7837" font-family="Verdana" font-size="12">0,N</text>
+<line x1="245" y1="345" x2="245" y2="270" stroke="#9970ab" stroke-width="2"></line>
+<text x="250.0" y="312" fill="#1b7837" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-demander">
+	<path d="M 269 245 a 14 14 90 0 1 14 14 V 270 h -76 V 259 a 14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"></path>
+	<path d="M 283 270.0 v 11 a 14 14 90 0 1 -14 14 H 221 a 14 14 90 0 1 -14 -14 V 270.0 H 76" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"></path>
+	<rect x="207" y="245" width="76" height="50" fill="none" rx="14" stroke="#9970ab" stroke-width="2"></rect>
+	<line x1="207" y1="270" x2="283" y2="270" stroke="#9970ab" stroke-width="1"></line>
+	<text x="214" y="262.7" fill="#000000" font-family="Verdana" font-size="12">demander</text>
+</g>
+
+<!-- Association souscrire -->
+<line x1="580" y1="152" x2="350" y2="270" stroke="#9970ab" stroke-width="2"></line>
+<text x="510" y="170.581309059" fill="#1b7837" font-family="Verdana" font-size="12">1,1</text>
+<line x1="158" y1="152" x2="350" y2="270" stroke="#9970ab" stroke-width="2"></line>
+<text x="198" y="170.259578203" fill="#1b7837" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-souscrire">
+	<path d="M 371 245 a 14 14 90 0 1 14 14 V 270 h -70 V 259 a 14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"></path>
+	<path d="M 385 270.0 v 11 a 14 14 90 0 1 -14 14 H 329 a 14 14 90 0 1 -14 -14 V 270.0 H 70" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"></path>
+	<rect x="315" y="245" width="70" height="50" fill="none" rx="14" stroke="#9970ab" stroke-width="2"></rect>
+	<line x1="315" y1="270" x2="385" y2="270" stroke="#9970ab" stroke-width="1"></line>
+	<text x="322" y="262.7" fill="#000000" font-family="Verdana" font-size="12">souscrire</text>
+</g>
+
+<!-- Association paie -->
+<line x1="350" y1="152" x2="245" y2="152" stroke="#9970ab" stroke-width="2"></line>
+<text x="283" y="169.0" fill="#1b7837" font-family="Verdana" font-size="12">0,N</text>
+<line x1="158" y1="152" x2="245" y2="152" stroke="#9970ab" stroke-width="2"></line>
+<text x="198" y="144.0" fill="#1b7837" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-paie">
+	<path d="M 251 127 a 14 14 90 0 1 14 14 V 152 h -40 V 141 a 14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"></path>
+	<path d="M 265 152.0 v 11 a 14 14 90 0 1 -14 14 H 239 a 14 14 90 0 1 -14 -14 V 152.0 H 40" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"></path>
+	<rect x="225" y="127" width="40" height="50" fill="none" rx="14" stroke="#9970ab" stroke-width="2"></rect>
+	<line x1="225" y1="152" x2="265" y2="152" stroke="#9970ab" stroke-width="1"></line>
+	<text x="232" y="144.7" fill="#000000" font-family="Verdana" font-size="12">paie</text>
+</g>
+
+<!-- Association correspond -->
+<line x1="580" y1="152" x2="463" y2="152" stroke="#9970ab" stroke-width="2"></line>
+<text x="510" y="144.0" fill="#1b7837" font-family="Verdana" font-size="12">1,1</text>
+<line x1="350" y1="152" x2="463" y2="152" stroke="#9970ab" stroke-width="2"></line>
+<text x="395" y="169.0" fill="#1b7837" font-family="Verdana" font-size="12">0,1</text>
+<g id="association-correspond">
+	<path d="M 490 127 a 14 14 90 0 1 14 14 V 152 h -82 V 141 a 14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"></path>
+	<path d="M 504 152.0 v 11 a 14 14 90 0 1 -14 14 H 436 a 14 14 90 0 1 -14 -14 V 152.0 H 82" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"></path>
+	<rect x="422" y="127" width="82" height="50" fill="none" rx="14" stroke="#9970ab" stroke-width="2"></rect>
+	<line x1="422" y1="152" x2="504" y2="152" stroke="#9970ab" stroke-width="1"></line>
+	<text x="429" y="144.7" fill="#000000" font-family="Verdana" font-size="12">correspond</text>
+</g>
+
+<!-- Association est lié à -->
+<line x1="50" y1="152" x2="245" y2="34" stroke="#9970ab" stroke-width="2"></line>
+<text x="96" y="139.507561059" fill="#1b7837" font-family="Verdana" font-size="12">1,1</text>
+<line x1="350" y1="152" x2="245" y2="34" stroke="#9970ab" stroke-width="2"></line>
+<text x="284" y="117.558585055" fill="#1b7837" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-est lié à">
+	<path d="M 263 9 a 14 14 90 0 1 14 14 V 34 h -64 V 23 a 14 14 90 0 1 14 -14" fill="#c2a5cf" stroke="#c2a5cf" stroke-width="0"></path>
+	<path d="M 277 34.0 v 11 a 14 14 90 0 1 -14 14 H 227 a 14 14 90 0 1 -14 -14 V 34.0 H 64" fill="#e7d4e8" stroke="#e7d4e8" stroke-width="0"></path>
+	<rect x="213" y="9" width="64" height="50" fill="none" rx="14" stroke="#9970ab" stroke-width="2"></rect>
+	<line x1="213" y1="34" x2="277" y2="34" stroke="#9970ab" stroke-width="1"></line>
+	<text x="220" y="26.7" fill="#000000" font-family="Verdana" font-size="12">est lié à</text>
+</g>
+
+<!-- Entity Abonnement -->
+<g id="entity-Abonnement">
+	<g id="frame-Abonnement">
+		<rect x="536" y="101" width="88" height="25" fill="#a6dba0" stroke="#a6dba0" stroke-width="0"></rect>
+		<rect x="536" y="126.0" width="88" height="77" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0"></rect>
+		<rect x="536" y="101" width="88" height="102" fill="none" stroke="#5aae61" stroke-width="2"></rect>
+		<line x1="536" y1="126" x2="624" y2="126" stroke="#5aae61" stroke-width="1"></line>
+	</g>
+	<text x="541" y="118.7" fill="#000000" font-family="Verdana" font-size="12">Abonnement</text>
+	<text x="541" y="143.7" fill="#000000" font-family="Verdana" font-size="12">numabo</text>
+	<line x1="541" y1="146" x2="591" y2="146" stroke="#000000" stroke-width="1"></line>
+	<text x="541" y="160.8" fill="#000000" font-family="Verdana" font-size="12">nomabo</text>
+	<text x="541" y="177.8" fill="#000000" font-family="Verdana" font-size="12">datedebabo</text>
+	<text x="541" y="194.8" fill="#000000" font-family="Verdana" font-size="12">datefinabo</text>
+</g>
+
+<!-- Entity Filattente -->
+<g id="entity-Filattente">
+	<g id="frame-Filattente">
+		<rect x="211" y="320" width="68" height="25" fill="#a6dba0" stroke="#a6dba0" stroke-width="0"></rect>
+		<rect x="211" y="345.0" width="68" height="25" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0"></rect>
+		<rect x="211" y="320" width="68" height="50" fill="none" stroke="#5aae61" stroke-width="2"></rect>
+		<line x1="211" y1="345" x2="279" y2="345" stroke="#5aae61" stroke-width="1"></line>
+	</g>
+	<text x="216" y="337.7" fill="#000000" font-family="Verdana" font-size="12">Filattente</text>
+	<text x="216" y="362.8" fill="#000000" font-family="Verdana" font-size="12">num</text>
+	<line x1="216" y1="365" x2="244" y2="365" stroke="#000000" stroke-width="1"></line>
+</g>
+
+<!-- Entity Client -->
+<g id="entity-Client">
+	<g id="frame-Client">
+		<rect x="123" y="84" width="70" height="25" fill="#a6dba0" stroke="#a6dba0" stroke-width="0"></rect>
+		<rect x="123" y="109.0" width="70" height="111" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0"></rect>
+		<rect x="123" y="84" width="70" height="136" fill="none" stroke="#5aae61" stroke-width="2"></rect>
+		<line x1="123" y1="109" x2="193" y2="109" stroke="#5aae61" stroke-width="1"></line>
+	</g>
+	<text x="140" y="101.7" fill="#000000" font-family="Verdana" font-size="12">Client</text>
+	<text x="128" y="126.7" fill="#000000" font-family="Verdana" font-size="12">numtelcli</text>
+	<line x1="128" y1="129" x2="184" y2="129" stroke="#000000" stroke-width="1"></line>
+	<text x="128" y="143.7" fill="#000000" font-family="Verdana" font-size="12">nomcli</text>
+	<text x="128" y="160.8" fill="#000000" font-family="Verdana" font-size="12">prénomcli</text>
+	<text x="128" y="177.8" fill="#000000" font-family="Verdana" font-size="12">emailcli</text>
+	<text x="128" y="194.8" fill="#000000" font-family="Verdana" font-size="12">languecli</text>
+	<text x="128" y="211.8" fill="#000000" font-family="Verdana" font-size="12">mdpcli</text>
+</g>
+
+<!-- Entity Facture -->
+<g id="entity-Facture">
+	<g id="frame-Facture">
+		<rect x="310" y="101" width="80" height="25" fill="#a6dba0" stroke="#a6dba0" stroke-width="0"></rect>
+		<rect x="310" y="126.0" width="80" height="77" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0"></rect>
+		<rect x="310" y="101" width="80" height="102" fill="none" stroke="#5aae61" stroke-width="2"></rect>
+		<line x1="310" y1="126" x2="390" y2="126" stroke="#5aae61" stroke-width="1"></line>
+	</g>
+	<text x="327" y="118.7" fill="#000000" font-family="Verdana" font-size="12">Facture</text>
+	<text x="315" y="143.7" fill="#000000" font-family="Verdana" font-size="12">numfac</text>
+	<line x1="315" y1="146" x2="361" y2="146" stroke="#000000" stroke-width="1"></line>
+	<text x="315" y="160.8" fill="#000000" font-family="Verdana" font-size="12">datelimfac</text>
+	<text x="315" y="177.8" fill="#000000" font-family="Verdana" font-size="12">montantfac</text>
+	<text x="315" y="194.8" fill="#000000" font-family="Verdana" font-size="12">statutfac</text>
+</g>
+
+<!-- Entity Réservation -->
+<g id="entity-Réservation">
+	<g id="frame-Réservation">
+		<rect x="9" y="93" width="82" height="25" fill="#a6dba0" stroke="#a6dba0" stroke-width="0"></rect>
+		<rect x="9" y="118.0" width="82" height="93" fill="#d9f0d3" stroke="#d9f0d3" stroke-width="0"></rect>
+		<rect x="9" y="93" width="82" height="118" fill="none" stroke="#5aae61" stroke-width="2"></rect>
+		<line x1="9" y1="118" x2="91" y2="118" stroke="#5aae61" stroke-width="1"></line>
+	</g>
+	<text x="14" y="110.7" fill="#000000" font-family="Verdana" font-size="12">Réservation</text>
+	<text x="14" y="135.7" fill="#000000" font-family="Verdana" font-size="12">numres</text>
+	<line x1="14" y1="138" x2="60" y2="138" stroke="#000000" stroke-width="1"></line>
+	<text x="14" y="152.8" fill="#000000" font-family="Verdana" font-size="12">nomres</text>
+	<text x="14" y="169.8" fill="#000000" font-family="Verdana" font-size="12">datedebres</text>
+	<text x="14" y="186.8" fill="#000000" font-family="Verdana" font-size="12">datefinres</text>
+	<text x="14" y="203.8" fill="#000000" font-family="Verdana" font-size="12">prixres</text>
+</g>
+</svg></div>
+					<div id="diagramOutputSupplement" class="contents">
+
+<meta charset="utf-8">
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+</style>
+
+
+<div id="mld">
+<div>
+  <span class="relation">Réservation</span> (
+    <span class="primary">numres</span>,
+    <span class="normal">nomres</span>,
+    <span class="normal">datedebres</span>,
+    <span class="normal">datefinres</span>,
+    <span class="normal">prixres</span>,
+    <span class="foreign">numtelcli</span>,
+    <span class="foreign">num</span>,
+    <span class="foreign">numfac</span>
+  )
+</div>
+<div>
+  <span class="relation">Client</span> (
+    <span class="primary">numtelcli</span>,
+    <span class="normal">nomcli</span>,
+    <span class="normal">prénomcli</span>,
+    <span class="normal">emailcli</span>,
+    <span class="normal">languecli</span>,
+    <span class="normal">mdpcli</span>,
+    <span class="foreign">numfac</span>
+  )
+</div>
+<div>
+  <span class="relation">Facture</span> (
+    <span class="primary">numfac</span>,
+    <span class="normal">datelimfac</span>,
+    <span class="normal">montantfac</span>,
+    <span class="normal">statutfac</span>
+  )
+</div>
+<div>
+  <span class="relation">Abonnement</span> (
+    <span class="primary">numabo</span>,
+    <span class="normal">nomabo</span>,
+    <span class="normal">datedebabo</span>,
+    <span class="normal">datefinabo</span>,
+    <span class="foreign">numtelcli</span>,
+    <span class="foreign">numfac</span>
+  )
+</div>
+<!--
+<div>
+  <span class='relation'>Filattente</span> (
+    <span class='primary'>num</span>
+  )
+</div>
+-->
+</div>
+
+</div>
+				</div>
+				<div id="relationalOutput" class="contents" style="display: none;"><fieldset class="listing"><legend>HTML</legend><pre><code class="language-markup">&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset='utf-8'&gt;
+&lt;style&gt;
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id='mld'&gt;
+&lt;div&gt;
+  &lt;span class='relation'&gt;Réservation&lt;/span&gt; (
+    &lt;span class='primary'&gt;numres&lt;/span&gt;,
+    &lt;span class='normal'&gt;nomres&lt;/span&gt;,
+    &lt;span class='normal'&gt;datedebres&lt;/span&gt;,
+    &lt;span class='normal'&gt;datefinres&lt;/span&gt;,
+    &lt;span class='normal'&gt;prixres&lt;/span&gt;,
+    &lt;span class='foreign'&gt;numtelcli&lt;/span&gt;,
+    &lt;span class='foreign'&gt;num&lt;/span&gt;,
+    &lt;span class='foreign'&gt;numfac&lt;/span&gt;
+  )
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;span class='relation'&gt;Client&lt;/span&gt; (
+    &lt;span class='primary'&gt;numtelcli&lt;/span&gt;,
+    &lt;span class='normal'&gt;nomcli&lt;/span&gt;,
+    &lt;span class='normal'&gt;prénomcli&lt;/span&gt;,
+    &lt;span class='normal'&gt;emailcli&lt;/span&gt;,
+    &lt;span class='normal'&gt;languecli&lt;/span&gt;,
+    &lt;span class='normal'&gt;mdpcli&lt;/span&gt;,
+    &lt;span class='foreign'&gt;numfac&lt;/span&gt;
+  )
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;span class='relation'&gt;Facture&lt;/span&gt; (
+    &lt;span class='primary'&gt;numfac&lt;/span&gt;,
+    &lt;span class='normal'&gt;datelimfac&lt;/span&gt;,
+    &lt;span class='normal'&gt;montantfac&lt;/span&gt;,
+    &lt;span class='normal'&gt;statutfac&lt;/span&gt;
+  )
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;span class='relation'&gt;Abonnement&lt;/span&gt; (
+    &lt;span class='primary'&gt;numabo&lt;/span&gt;,
+    &lt;span class='normal'&gt;nomabo&lt;/span&gt;,
+    &lt;span class='normal'&gt;datedebabo&lt;/span&gt;,
+    &lt;span class='normal'&gt;datefinabo&lt;/span&gt;,
+    &lt;span class='foreign'&gt;numtelcli&lt;/span&gt;,
+    &lt;span class='foreign'&gt;numfac&lt;/span&gt;
+  )
+&lt;/div&gt;
+&lt;!--
+&lt;div&gt;
+  &lt;span class='relation'&gt;Filattente&lt;/span&gt; (
+    &lt;span class='primary'&gt;num&lt;/span&gt;
+  )
+&lt;/div&gt;
+--&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></fieldset></div>
+				<div id="errorOutput" class="contents" style="display: none;"><pre>Mocodo Err.1 - Association «&nbsp;demander&nbsp;» liée à une entité inconnue
+«&nbsp;Réservation&nbsp;».</pre></div>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="navigation">
+	<a target="_blank" href="https://github.com/laowantong/mocodo">Mocodo</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://rawgit.com/laowantong/mocodo/master/doc/fr_refman.html">Documentation</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://www.transifex.com/aristide/mocodo">Localisation</a>
+	&nbsp;∙&nbsp;
+	<a target="_blank" href="https://github.com/laowantong/mocodo/issues">Récriminations</a>
+	&nbsp;∙&nbsp;
+	<span id="contact"><a href="mailto:mocodo@wingi.net">Contact</a></span>
+</div>
+
+<script type="text/javascript" charset="utf8" src="Mocodo%20online_fichiers/jquery-1.js"></script>
+<script type="text/javascript" charset="utf8" src="Mocodo%20online_fichiers/js.js"></script>
+<script type="text/javascript" charset="utf8" src="Mocodo%20online_fichiers/mocodo.js"></script>
+
+
+
+</body></html>

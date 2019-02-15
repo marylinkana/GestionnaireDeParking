@@ -1,0 +1,5 @@
+<?php
+    $bdduser = "root";
+    $bddmdp = "";
+    ?>  
+
