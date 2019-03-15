@@ -50,5 +50,3 @@ Documentation permettant de comprendre comment est construite l’application (s
 
 3.7  Accès depuis le réseau local
 Installation de l’application sur un serveur accessible depuis le réseau local.
-
-http://localhost/Parking3000/Parking3000/SiteParking3000/views/accueilView.php
