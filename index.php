@@ -1,36 +1,30 @@
 <?php
-
 session_start();
+  require 'Modeles/connexion.php';
 
-  //  try  {
-    //    $bdd = new PDO("mysql:host=localhost;dbname=parking3000;charset=uf8","root","");
-     //   }
-     //   catch(Exception $e)
-     //   {
-      //      die ("erreur de bdd non trouvée cherche mieux");
-     //   }
-
+  // define('WEBROOT', dirname(__FILE__));
+  // define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
+  // define('ROOT', dirname(WEBROOT));
+  // define('DS', DIRECTORY_SEPARATOR);
+  // define('CORE',ROOT.DS.'core');
 
 if(!isset($_GET['p']) || $_GET['p'] == "")
-        {
-
-            $page = "accueil";
-            
-        }
-
+{
+        $page = "accueil";
+}
 else
+{
+    if(!file_exists("Controllers/".$_GET['p'].".php"))
         {
-            if(!file_exists("controllers/".$_GET['p']."Controller.php"))
-                $page = "404";
-            else
-                $page = $_GET['p'];
-               
+            $page = 404;
         }
+        else
+            $page = $_GET['p'];
+    }
+    ob_start();//suspend l'affichage
+    require "Controllers/".$page.".php";
+    $content = ob_get_contents();//recupere ce qui n'a pas ete affiché
+    ob_end_clean();//reprend l'affichage
 
-        ob_start();
-        include "controllers/".$page."Controller.php";
-        $content = ob_get_contents();
-        ob_end_clean();
-	
-	include "layout.php";
+require "layout.php";
 ?>
