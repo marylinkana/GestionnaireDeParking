@@ -10,7 +10,7 @@
   <title>PARKING M2L</title>
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
+  <link href="img/logo.jpg" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
@@ -31,13 +31,15 @@
 
     <header class="header black-bg">
       <div class="sidebar-toggle-box">
-        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index" class="logo"><b>PARKING <span> M2L</span></b></a>
+      <a href="accueil" class="logo"><b>PARKING <span> M2L </span></b></a>
       <?php
-           if (isset($_SESSION['connecte'])){
-               echo '<div class="top-menu">
+           if (isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){
+               echo '
+                    <div class="top-menu">
+                    <a style="margin-left:400px;" class="logo"><b> Bienvenue <span> '.$_SESSION['id_u'].'</span></b></a>
                         <ul class="nav pull-right top-menu">
                             <li><a class="logout" href="logout">Logout</a></li>
                         </ul>
@@ -61,7 +63,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile"><img src="img/background.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="profile"><img src="img/logo.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">Parking M2L</h5>
           <li class="mt">
             <a class="active" href="admin">
@@ -141,11 +143,22 @@
   <script src="lib/zabuto_calendar.js"></script>
   <!-- js placed at the end of the document so the pages load faster -->
  <script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
-  <!-- <script>
-    $.backstretch("img/login-bg.jpg", {
-      speed: 500
-    });
-  </script> -->
+ <?php
+      if (isset($_SESSION['connecte'])){
+        ?><script>
+          $.backstretch("img/backgroundadmin.jpg", {
+            speed: 500
+          });
+        </script><?php
+       }
+       else{
+         ?><script>
+           $.backstretch("img/backgroundaccueil.jpg", {
+             speed: 500
+           });
+         </script><?php
+       }
+ ?>
 </section>
 </body>
 </html>

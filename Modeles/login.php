@@ -11,27 +11,31 @@ if(isset($_POST['submit']))
     //var_dump($requete);
     $requete->bindValue(':email',$email,PDO::PARAM_STR);
     $requete->bindValue(':mdp',$mdp,PDO::PARAM_STR);
-    //$requete->execute();
-    if($requete->execute())
+    $requete->execute();
+    if($requete->fetch())
     {
         $_SESSION['connecte'] = true;
         $_SESSION['id_u'] = $reponse['id_u'];
         $_SESSION['niveau'] = $reponse['niveau'];
+        $_SESSION['nom'] = $reponse['nom'];
         if(isset($_POST['remember']))
         {
             setcookie('auth',$reponse['id_u']."-----".sha1($reponse['email'].$reponse['mdp'].$_SERVER['REMOTE_ADDR']),time()+(3600*24*3),'/','localhost',false,true); //le dernier argument evite que le cookie soit editable en javascript
         }
 
     if($SESSION['niveau'] = 0){
-        header('Location:accueil');
+      echo "<p class='btn btn-warning'><b>Votre demande d'inscription est encore en cours de traitement.</b></p>";
     }
     if($SESSION['niveau'] = 1){
+        header('Location:accueil');
+    }
+    if($SESSION['niveau'] = 2){
         header('Location:admin');
     }
     }
     else
     {
-        echo "<p style='color:red'><b>Identifiants incorrectes</b></p>";
+        echo "<p class='btn btn-danger'><b>Identifiants incorrectes</b></p>";
     }
 }
 
