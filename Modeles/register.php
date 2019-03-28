@@ -1,7 +1,7 @@
 <?php
 global $bdd;
 if(isset($_POST['submit'])) {
-    
+
 $nom =  htmlspecialchars($_POST['nom']);
 $prenom =  htmlspecialchars($_POST['prenom']);
 $email =  htmlspecialchars($_POST['email']);
@@ -30,7 +30,7 @@ if($email_verif == 'ok'){
 
  if($nombre_email < 1){
    // Enregistrement de l'email mail dans la base de donnees Mail
-   $req_insert_user = $bdd->prepare("INSERT INTO users(nom, prenom, mdp, email, niveau) VALUES(:nom, :prenom, :mdp, :email, :niveau)");
+   $req_insert_user = $bdd->prepare("INSERT INTO users(nom_u, prenom, mdp, email, niveau) VALUES(:nom, :prenom, :mdp, :email, :niveau)");
    $req_insert_user->bindValue(':nom', $nom, PDO::PARAM_STR);
    $req_insert_user->bindValue(':prenom', $prenom, PDO::PARAM_STR);
    $req_insert_user->bindValue(':mdp', $mdp, PDO::PARAM_STR);

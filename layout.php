@@ -37,15 +37,20 @@
       <a href="accueil" class="logo"><b>PARKING <span> M2L </span></b></a>
       <?php
            if (isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){
+               //var_dump($_SESSION);
                echo '
                     <div class="top-menu">
-                    <a style="margin-left:400px;" class="logo"><b> Bienvenue <span> '.$_SESSION['id_u'].'</span></b></a>
+                    <div class="text-center">
+                      <p>
+                        <a style="margin-left:400px;" class="logo"><b> Bienvenue <span> '.$_SESSION['nom'].'</span></b></a>
+                      </p>
+                    </div>
                         <ul class="nav pull-right top-menu">
                             <li><a class="logout" href="logout">Logout</a></li>
                         </ul>
                      </div>';
             }
-            else{
+            else{ //var_dump($_SESSION);
                 echo '<div class="top-menu">
                         <ul class="nav pull-right top-menu">
                             <li><a class="logout" href="login">Login</a></li>
@@ -57,7 +62,7 @@
     </header>
     <!--sidebar start-->
     <?php
-           if (isset($_SESSION['connecte'])){
+           if (isset($_SESSION['connecte']) && isset($_SESSION['connecte']) && $_SESSION['connecte'] == true && $_SESSION['niveau'] == 2){
     ?>
     <aside>
       <div id="sidebar" class="nav-collapse ">
@@ -74,28 +79,22 @@
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-desktop"></i>
-              <span>UI Elements</span>
+              <span>Membre</span>
               </a>
             <ul class="sub">
-              <li><a href="general.html">General</a></li>
-              <li><a href="buttons.html">Buttons</a></li>
-              <li><a href="panels.html">Panels</a></li>
-              <li><a href="font_awesome.html">Font Awesome</a></li>
+              <li><a href="">Demandes</a></li>
+              <li><a href="">Utilisateurs</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-cogs"></i>
-              <span>Components</span>
+              <span>Parking</span>
               </a>
-            <ul class="sub">
-              <li><a href="grids.html">Grids</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="todo_list.html">Todo List</a></li>
-              <li><a href="dropzone.html">Dropzone File Upload</a></li>
-              <li><a href="inline_editor.html">Inline Editor</a></li>
-              <li><a href="file_upload.html">Multiple File Upload</a></li>
+            <ul class="">
+              <li><a href="">Reservations</a></li>
+              <li><a href="">Files</a></li>
+              <li><a href="">Places</a></li>
             </ul>
           </li>
         </ul>

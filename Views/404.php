@@ -9,4 +9,12 @@ $.backstretch("img/404.png", {
     speed: 500
   });
 </script>
-<body style="backgroud-image:url(../img/404.php;)"></body>
+<body style="backgroud-image:url(img/404.png;)"></body>
+<div class="text-center">
+  <p>
+    <img src="img/404.png"></img>
+  </p>
+  <a href="404#" class="go-top">
+    <i class="fa fa-angle-up"></i>
+    </a>
+</div>

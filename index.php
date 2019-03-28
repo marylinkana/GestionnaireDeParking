@@ -7,6 +7,7 @@ session_start();
   // define('ROOT', dirname(WEBROOT));
   // define('DS', DIRECTORY_SEPARATOR);
   // define('CORE',ROOT.DS.'core');
+  
 
 if(!isset($_GET['p']) || $_GET['p'] == "")
 {
