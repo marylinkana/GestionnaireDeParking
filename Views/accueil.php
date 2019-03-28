@@ -1,3 +1,4 @@
+<div id="accueil">
 <?php
 if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
   <div class="text-center">
@@ -57,3 +58,4 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
         <?php } } }?>
   </div>
 <?php } ?>
+</div>

@@ -3468,6 +3468,10 @@ ul.chat-available-user li a:hover {
   margin: 15px 0;
 }
 
+#afficherMasquer{
+  width: 140px;
+}
+
 /* Copyrights */
 
 #copyrights {

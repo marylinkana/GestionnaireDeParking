@@ -42,7 +42,7 @@
                     <div class="top-menu">
                     <div class="text-center">
                       <p>
-                        <a style="margin-left:400px;" class="logo"><b> Bienvenue <span> '.$_SESSION['nom'].'</span></b></a>
+                        <a style="margin-left:350px;" class="logo"><b> Bienvenue <span> '.$_SESSION['nom'].'</span></b></a>
                       </p>
                     </div>
                         <ul class="nav pull-right top-menu">
@@ -62,41 +62,52 @@
     </header>
     <!--sidebar start-->
     <?php
-           if (isset($_SESSION['connecte']) && isset($_SESSION['connecte']) && $_SESSION['connecte'] == true && $_SESSION['niveau'] == 2){
+           if (isset($_SESSION['connecte']) && $_SESSION['connecte'] == true ){
     ?>
     <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile"><img src="img/logo.jpg" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="accueil"><img src="img/logo.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">Parking M2L</h5>
           <li class="mt">
-            <a class="active" href="admin">
-              <i class="fa fa-dashboard"></i>
-              <span>Dashboard</span>
+            <a class="active" href="accueil">
+              <i class="fa fa-home"></i>
+              <span>Accueil</span>
+              </a>
+          </li>
+          <?php
+                 if (isset($_SESSION['connecte']) && isset($_SESSION['connecte']) && $_SESSION['connecte'] == true && $_SESSION['niveau'] == 2){
+          ?>
+          <li class="javascript:;">
+              <a class="javascript:;" href="admin">
+                <i class="fa fa-dashboard"></i>
+                <span>Admin</span>
               </a>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>Membre</span>
+              <i class="fa fa-users"></i>
+              <span>Membres</span>
               </a>
-            <ul class="sub">
-              <li><a href="">Demandes</a></li>
-              <li><a href="">Utilisateurs</a></li>
+            <ul class="">
+              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('insc')">Inscriptions</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px"  onclick="AfficherMasquer('user')">Utilisateur</button></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-cogs"></i>
+              <i class="fa fa-car"></i>
               <span>Parking</span>
               </a>
             <ul class="">
-              <li><a href="">Reservations</a></li>
-              <li><a href="">Files</a></li>
-              <li><a href="">Places</a></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('resv')">Reservations</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('file')">File</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('disp')">Disponibilités</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('cree')">Créer</button></li>
             </ul>
           </li>
+          <?php } ?>
         </ul>
         <!-- sidebar menu end-->
       </div>
@@ -142,6 +153,27 @@
   <script src="lib/zabuto_calendar.js"></script>
   <!-- js placed at the end of the document so the pages load faster -->
  <script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
+ <script>
+    function AfficherMasquer($id)
+    {
+    divInfo = document.getElementById($id);
+
+    if (divInfo.style.display == 'none')
+    divInfo.style.display = 'block';
+    else
+    divInfo.style.display = 'none';
+    }
+
+    function ActiveDasactive($id)
+    {
+    divInfo = document.getElementById($id);
+
+    if (divInfo.class == 'active')
+    divInfo.class = 'javascript:;';
+    else
+    divInfo.style.display = 'active';
+    }
+</script>
  <?php
       if (isset($_SESSION['connecte'])){
         ?><script>

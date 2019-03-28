@@ -1,6 +1,6 @@
 <?php
   if(isset($_SESSION['niveau']) && $_SESSION['niveau'] == 2){?>
-    <div class="text-center">
+    <div id="insc" class="text-center" style="display:block">
     <p style="color: black; font-size:50px;">INSCRIPTIONS</p>
      <?php
       $req = getListInscrit()->fetchAll();
@@ -20,7 +20,7 @@
      <br>
    </div>
 
-  <div class="text-center">
+  <div id="user" class="text-center" style="display:none">
     <p style="color: black; font-size:50px;">UTILISATEURS</p>
      <?php
       $req = getListUser()->fetchAll();
@@ -41,7 +41,7 @@
        <br>
   </div>
 
-  <div class="text-center">
+  <div id="resv" class="text-center" style="display:none">
     <p style="color: black; font-size:50px;">RESERVATIONS</p>
      <?php
       $req = getListReservation()->fetchAll();
@@ -64,7 +64,7 @@
      <br>
   </div>
 
-  <div class="text-center">
+  <div id="disp" class="text-center" style="display:none">
       <p style="color: black; font-size:50px;">PLACES DISPONIBLES</p>
        <?php
         $req = getListPlacesDispo()->fetchAll();
@@ -84,7 +84,7 @@
        <br>
   </div>
 
-  <div class="text-center">
+  <div id="file" class="text-center" style="display:none">
   <p style="color: black; font-size:50px;">FILE D'ATTENTE</p>
    <?php
    if(getWettingList()->rowCount() >= 1){
@@ -102,8 +102,8 @@
  <br>
  </div>
 
-  <div class="text-center">
-    <p style="color: black; font-size:50px;">PLACES</p>
+  <div id="cree" class="text-center" style="display:none">
+    <p style="color: black; font-size:50px;">NOUVELLE PLACES</p>
     <form action="admin" method="post">
       <input type="text" name ="nom" style=" color: black; " class="btn btn-secondary" />
       <input type="submit" name ="ajouter" style=" color: white; " class="btn btn-success" value="Ajouter"/>
