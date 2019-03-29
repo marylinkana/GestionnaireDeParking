@@ -42,7 +42,7 @@
                     <div class="top-menu">
                     <div class="text-center">
                       <p>
-                        <a style="margin-left:350px;" class="logo"><b> Bienvenue <span> '.$_SESSION['nom'].'</span></b></a>
+                        <a style="margin-left:340px;" class="logo"><b> Bienvenue <span> '.$_SESSION['nom'].'</span></b></a>
                       </p>
                     </div>
                         <ul class="nav pull-right top-menu">

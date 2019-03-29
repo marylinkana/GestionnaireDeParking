@@ -28,7 +28,6 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
 
   <div class="text-center">
       <p style="color: black; font-size:50px;">PLACES DISPONIBLES</p>
-      <br>
        <?php
         $req = getListPlacesDispo()->fetchAll();
         foreach($req as $v => $r){ ?>
