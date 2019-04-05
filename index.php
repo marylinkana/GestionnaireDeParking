@@ -1,13 +1,13 @@
 <?php
 session_start();
-  require 'Modeles/connexion.php';
+  require 'connexion.php';
 
   // define('WEBROOT', dirname(__FILE__));
   // define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
   // define('ROOT', dirname(WEBROOT));
   // define('DS', DIRECTORY_SEPARATOR);
   // define('CORE',ROOT.DS.'core');
-  
+
 
 if(!isset($_GET['p']) || $_GET['p'] == "")
 {
@@ -15,12 +15,11 @@ if(!isset($_GET['p']) || $_GET['p'] == "")
 }
 else
 {
-    if(!file_exists("Controllers/".$_GET['p'].".php"))
+    $page = 404;
+    if(file_exists("Controllers/".$_GET['p'].".php"))
         {
-            $page = 404;
-        }
-        else
             $page = $_GET['p'];
+        }
     }
     ob_start();//suspend l'affichage
     require "Controllers/".$page.".php";

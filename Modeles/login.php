@@ -27,7 +27,8 @@ if(isset($_POST['submit']))
 
         if($_SESSION['niveau'] == 0){
           echo "<p class='btn btn-warning'><b>Votre demande d'inscription est encore en cours de traitement
-                                                nous vous remercions de bien vouloir rééseyer sous 24h svp.</b></p>";
+                                                nous vous remercions de bien vouloir rééseyer sous 24h svp.</b></p>
+                                                ";
 
         }
 

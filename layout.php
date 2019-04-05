@@ -23,6 +23,8 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
   <script src="lib/chart-master/Chart.js"></script>
+  <script src="lib/jquery/jquery.js"></script>
+
 
 </head>
 
@@ -174,6 +176,12 @@
     divInfo.style.display = 'active';
     }
 </script>
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+<script> $('.alert').alert(); </script>
  <?php
       if (isset($_SESSION['connecte'])){
         ?><script>
