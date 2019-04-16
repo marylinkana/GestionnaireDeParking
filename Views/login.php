@@ -11,13 +11,11 @@
         <a data-toggle="modal" href=""> Forgot Password?</a>
         </span>
         </label>
-      <input class="btn btn-theme btn-block" type="submit" name="submit"  value="Login">
+      <input class="btn btn-theme btn-block" type="submit" name="login"  value="Login">
       <br>
       <div class="registration">
         Don't have an account yet?<br/>
-        <a class="" href="register">
-          Create an account
-          </a>
+        <a class="btn btn-theme" href="register"> Create an account </a>
       </div>
     </div>
   </form>

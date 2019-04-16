@@ -72,41 +72,52 @@
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="accueil"><img src="img/logo.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">Parking M2L</h5>
-          <li class="mt">
-            <a class="active" href="accueil">
+          <!-- <li class="mt">
+            <a class="javascript:;" id="accu" href="accueil" onclick="ActiveDesactive('accu')">
               <i class="fa fa-home"></i>
               <span>Accueil</span>
               </a>
+          </li> -->
+          <li class="sub-menu">
+            <a href="javascript:;"  onclick="ActiveDesactive('accu')">
+              <i class="fa fa-user"></i>
+              <span>Accueil</span>
+              </a>
+            <ul class="">
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('rese')">Mes réservations</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px"  onclick="AfficherMasquer('plac')">Places disponibles</button></li>
+            </ul>
           </li>
           <?php
                  if (isset($_SESSION['connecte']) && isset($_SESSION['connecte']) && $_SESSION['connecte'] == true && $_SESSION['niveau'] == 2){
           ?>
-          <li class="javascript:;">
-              <a class="javascript:;" href="admin">
+          <li class="javascript:;" >
+              <a class="javascript:;" href="admin" onclick="ActiveDesactive('admi')">
                 <i class="fa fa-dashboard"></i>
                 <span>Admin</span>
               </a>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a href="javascript:;" onclick="ActiveDesactive('memb')">
               <i class="fa fa-users"></i>
               <span>Membres</span>
               </a>
             <ul class="">
-              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('insc')">Inscriptions</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px"  onclick="AfficherMasquer('user')">Utilisateur</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('insc')">Inscriptions</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px"  onclick="AfficherMasquer('user')">Utilisateur</button></li>
             </ul>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a href="javascript:;" onclick="ActiveDesactive('park')">
               <i class="fa fa-car"></i>
               <span>Parking</span>
               </a>
             <ul class="">
-              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('resv')">Reservations</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('file')">File</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('disp')">Disponibilités</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-info" style="width:140px" onclick="AfficherMasquer('cree')">Créer</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('resv')">Reservations</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('duree')">Duree</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('file')">File</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('disp')">Disponibilités</button></li>
+              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('cree')">Créer</button></li>
             </ul>
           </li>
           <?php } ?>
@@ -138,66 +149,100 @@
           </div>
         </section>
       </section>
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="lib/jquery/jquery.min.js"></script>
 
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
-  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="lib/jquery.sparkline.js"></script>
-  <!--common script for all pages-->
-  <script src="lib/common-scripts.js"></script>
-  <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
-  <script type="text/javascript" src="lib/gritter-conf.js"></script>
-  <!--script for this page-->
-  <script src="lib/sparkline-chart.js"></script>
-  <script src="lib/zabuto_calendar.js"></script>
-  <!-- js placed at the end of the document so the pages load faster -->
- <script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
- <script>
-    function AfficherMasquer($id)
-    {
-    divInfo = document.getElementById($id);
+      <!-- js placed at the end of the document so the pages load faster -->
+      <script src="lib/jquery/jquery.min.js"></script>
 
-    if (divInfo.style.display == 'none')
-    divInfo.style.display = 'block';
-    else
-    divInfo.style.display = 'none';
-    }
+      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+      <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+      <script src="lib/jquery.scrollTo.min.js"></script>
+      <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+      <script src="lib/jquery.sparkline.js"></script>
+      <!--common script for all pages-->
+      <script src="lib/common-scripts.js"></script>
+      <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
+      <script type="text/javascript" src="lib/gritter-conf.js"></script>
+      <!--script for this page-->
+      <script src="lib/sparkline-chart.js"></script>
+      <script src="lib/zabuto_calendar.js"></script>
+      <!-- js placed at the end of the document so the pages load faster -->
+      <script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
+      <script>
+        function AfficherMasquer($id)
+        {
+          if ( 'resv' != $id){
+            divInfo = document.getElementById('resv');
+            divInfo.style.display = 'none';
+          }
+          if ( 'file' != $id){
+            divInfo = document.getElementById('file');
+            divInfo.style.display = 'none';
+          }
+          if ( 'disp' != $id){
+            divInfo = document.getElementById('disp');
+            divInfo.style.display = 'none';
+          }
+          if ( 'cree' != $id){
+            divInfo = document.getElementById('cree');
+            divInfo.style.display = 'none';
+          }
+          if ( 'insc' != $id){
+            divInfo = document.getElementById('insc');
+            divInfo.style.display = 'none';
+          }
+          if ( 'user' != $id){
+            divInfo = document.getElementById('user');
+            divInfo.style.display = 'none';
+          }
+          if ( 'duree' != $id){
+            divInfo = document.getElementById('duree');
+            divInfo.style.display = 'none';
+          }
+          // if ( 'rese' != $id){
+          //   divInfo = document.getElementById('rese');
+          //   divInfo.style.display = 'none';
+          // }
+          // if ( 'plac' != $id){
+          //   divInfo = document.getElementById('plac');
+          //   divInfo.style.display = 'none';
+          // }
+          divInfo = document.getElementById($id);
+          divInfo.style.display = 'block';
+        }
 
-    function ActiveDasactive($id)
-    {
-    divInfo = document.getElementById($id);
+        function ActiveDesactive($id)
+        {
+        divInfo = document.getElementById($id);
 
-    if (divInfo.class == 'active')
-    divInfo.class = 'javascript:;';
-    else
-    divInfo.style.display = 'active';
-    }
-</script>
-<script>
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-</script>
-<script> $('.alert').alert(); </script>
- <?php
-      if (isset($_SESSION['connecte'])){
-        ?><script>
-          $.backstretch("img/backgroundadmin.jpg", {
-            speed: 500
-          });
-        </script><?php
-       }
-       else{
-         ?><script>
-           $.backstretch("img/backgroundaccueil.jpg", {
-             speed: 500
-           });
-         </script><?php
-       }
- ?>
+        if (divInfo.class == 'active')
+        divInfo.class = 'javascript:;';
+        else
+        divInfo.class = 'active';
+        }
+      </script>
+      <script>
+      $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+      })
+      </script>
+      <script> $('.alert').alert(); </script>
+      <?php
+          if (isset($_SESSION['connecte'])){
+            ?><script>
+              $.backstretch("img/backgroundadmin.jpg", {
+                speed: 500
+              });
+            </script><?php
+           }
+           else{
+             ?><script>
+               $.backstretch("img/backgroundaccueil.jpg", {
+                 speed: 500
+               });
+             </script><?php
+           }
+      ?>
+
 </section>
 </body>
 </html>

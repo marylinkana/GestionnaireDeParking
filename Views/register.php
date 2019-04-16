@@ -10,11 +10,11 @@
       <br>
       <input type="password" id="inputPassword" name="mdp" class="form-control" placeholder="Password" required="required">
       <br>
-      <button class="btn btn-theme btn-block" name="submit" type="submit"><i class="fa fa-lock"></i> Sing up </button>
+      <button class="btn btn-theme btn-block" name="register" type="submit"><i class="fa fa-lock"></i> Sing up </button>
       <hr>
       <div class="registration">
         have an account yet?<br/>
-        <a class="" href="login">
+        <a class="btn btn-theme" href="login">
           Sing in
           </a>
       </div>
