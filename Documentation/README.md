@@ -6,19 +6,13 @@ Il s'agit d'une application web de gestions des reservations des place de parkin
 
 
 Spécificités de L'application  :
-
-
-     Le front-office est sécurisé et n’accepter que les demandes du personnel. 
-     
-     Les inscriptions au service de réservation de place doivent être validées par un administrateur.
-     
-     L’administrateur, seul utilisateur du back-office, peut éditer la liste des places et gérer les inscriptions des                                                                     utilisateurs.
-     
+    Le front-office est sécurisé et n’accepter que les demandes du personnel. 
+    Les inscriptions au service de réservation de place doivent être validées par un administrateur.
+    L’administrateur, seul utilisateur du back-office, peut éditer la liste des places et gérer les inscriptions des utilisateurs.
     Lorsqu’un utilisateur en fait la demande, une place libre lui est attribuée aléatoirement et immédiatement par l’application, la réservation expire automatiquement au bout d’une durée par défaut déterminée par l’administrateur.
-    
     Si une demande ne peut pas être satisfaite, l’utilisateur est placé en liste d’attente.
-    
-    Un utilisateur ou l’administateur peuvent fermer une réservation avant la date d’expiration prévue. Une fois celle-ci expirée, l’utilisateur doit refaire une demande s’il souhaite obtenir une place. 
+    Un utilisateur ou l’administrateur peuvent fermer une réservation avant la date d’expiration prévue. Une fois celle-ci expirée, l’utilisateur doit refaire une demande s’il souhaite obtenir une place.
+
 
 
 
