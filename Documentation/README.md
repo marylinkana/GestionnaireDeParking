@@ -3,7 +3,7 @@
 
 
 
-Ici nous allons établir la prioriter des tâches à exécutuer
+Ici nous allons établi la prioriter des tâches à exécuter
 
 
 
