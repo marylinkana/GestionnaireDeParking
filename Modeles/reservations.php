@@ -55,8 +55,8 @@ class Reservation{
   public function createReserv($p, $u)
   {
       global $bdd;
-      $dateDebut = date("j-m-y  H:i:s");
-      $dateFin = date("j-m-y  H.i.s", strtotime("+$this->timeReserv minutes"));
+      $dateDebut = date("j-m-y H:i:s");
+      $dateFin = date("j-m-y H.i.s", strtotime("+$this->timeReserv minutes"));
       //var_dump($this->timeReserv);
       $res = $bdd->prepare("INSERT INTO reservations (id_us, id_pl, dateDebut, dateFin) VALUES (:id_u, :id_p, :dateDebut, :dateFin)");
       $res->bindValue(':id_u', $u ,PDO::PARAM_INT);

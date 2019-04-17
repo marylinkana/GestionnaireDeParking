@@ -14,10 +14,11 @@ class Place{
   public function getListPlacesDispo()
   {
       global $bdd;
-      $dateNow = date("j-m-y  H:i:s");
+      $dateNow = date("j-m-y H:i:s");
       $requete = $bdd->query("SELECT * FROM places WHERE id_p NOT IN (SELECT id_pl FROM reservations
-                              WHERE id_pl IS NOT NULL AND dateFin < '".$dateNow."') GROUP BY id_p");
-      $requete->fetch();
+                              WHERE dateFin > '".$dateNow."') GROUP BY id_p");
+      //$requete = $requete->fetchAll();
+      //var_dump($requete);
       return $requete;
   }
 

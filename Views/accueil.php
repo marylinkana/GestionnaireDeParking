@@ -6,18 +6,35 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
      <?php
      $req = $reservation->getMyReservList($_SESSION['id_u'])->fetchAll();
      if($reservation->getMyReservList($_SESSION['id_u'])->rowCount() >= 1){
+       ?>
+       <table class="table table-bordered bordered-dark" style="border:1px solid black;">
+        <thead class="" style="background-color:black;">
+          <tr style="text-align: center;">
+            <th scope="col" style="text-align: center;" >#</th>
+            <th scope="col" style="text-align: center;" >Nom</th>
+            <th scope="col" style="text-align: center;" >Place</th>
+            <th scope="col" style="text-align: center;" >Debut</th>
+            <th scope="col" style="text-align: center;" >Fin</th>
+          </tr>
+        </thead> <?php
        foreach($req as $v => $r){ ?>
          <form action="admin" method="post">
-             <input type="hidden" name ="id_r" style=" color: white; " class="btn btn-info" value="<?= $r['id_r'] ?>"/>
-             <input type="hidden" name ="id_p" style=" color: white; " class="btn btn-info" value="<?= $r['id_p'] ?>"/>
-             <input type="hidden" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/>
-             <input type="hidden" name ="date_f" style=" color: white; " class="btn btn-info" value="<?= $r['dateFin'] ?>"/>
-             <input type="hidden" name ="id_u" style=" color: white; " class="btn btn-info" value="<?= $r['id_u'] ?>"/>
-             <input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/>
-             <input type="button" name ="nom_u" style=" color: white; " class="btn btn-info" value="<?='Nom : '.$r['nom_u'].
-             ' --> Place : '.$r['nom_p'].' --> Debut : '.$r['dateDebut'].' --> Fin : '.$r['dateFin']?>"/>
+           <input type="hidden" name ="id_p" style=" color: white; " class="btn btn-info" value="<?= $r['id_p'] ?>"/>
+           <input type="hidden" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/>
+           <input type="hidden" name ="date_f" style=" color: white; " class="btn btn-info" value="<?= $r['dateFin'] ?>"/>
+           <input type="hidden" name ="id_u" style=" color: white; " class="btn btn-info" value="<?= $r['id_u'] ?>"/>
+            <tbody style="border:1px solid black" >
+              <tr style="border:1px solid black">
+                <th scope="row" style="text-align: center; background-color:#5bc0de;"><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
+                <td style="background-color:#5bc0de;"><input type="button" name ="nom_u" style=" color: white; " class="btn btn-info" value="<?=$r['nom_u']?>"/></td>
+                <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
+                <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?=$r['dateDebut']?>"/></td>
+                <td style="background-color:#5bc0de;"><input type="button" name ="date_f" style=" color: white; " class="btn btn-info" value="<?=$r['dateFin']?>"/></td>
         </form>
-       <?php }
+      <?php } ?>
+               </tr>
+             </tbody>
+           </table> <?php
    }
    else{echo "<p class='btn btn-warning'><b> Vous n'avez pas encore fait de réservations !</b></p>";}?>
    <br>
@@ -28,17 +45,28 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
       <p style="color: black; font-size:50px;">PLACES DISPONIBLES</p>
        <?php
         $req = $place->getListPlacesDispo()->fetchAll();
+        ?>
+        <table class="table table-bordered bordered-dark" style="border:1px solid black;">
+         <thead class="" style="background-color:black;">
+           <tr style="text-align: center;">
+             <th scope="col" style="text-align: center;" >#</th>
+             <th scope="col" style="text-align: center;" >Places</th>
+             <th scope="col" style="text-align: center;" >Réserver</th>
+           </tr>
+         </thead> <?php
         foreach($req as $v => $r){ ?>
           <form action="accueil" method="post">
-              <input type="hidden" name ="id_p" style=" color: white; " class="btn btn-info" value="<?= $r['id_p'] ?> "/>
-              <?php //var_dump($r['id_p']) ?>
-              <input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?> "/>
-              <input type="button" name ="nom" style=" color: white; " class="btn btn-info" value="<?='Place : '.$r['nom_p']?> "/>
-              <?php //var_dump($r['nom_p']) ?>
-              <input type="submit" name ="reserver" style=" color: white; " class="btn btn-danger" value="Reserver"/>
+            <input type="hidden" name ="id_p" style=" color: white; " class="btn btn-info" value="<?= $r['id_p'] ?> "/>
+            <tbody style="border:1px solid black" >
+              <tr style="border:1px solid black">
+                <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
+                <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
+                <td style="background-color:#5bc0de;"><input type="submit" name ="reserver" style=" color: white; " class="btn btn-success" value="Reserver"/></td>
          </form>
-         <br>
-       <?php }
+       <?php } ?>
+              </tr>
+            </tbody>
+          </table> <?php
         if($place->getListPlacesDispo()->rowCount() < 1){
           echo "<p class='btn btn-warning'><b> aucune place n'est disponible pour la moment !</b></p>";
           if($user->getRankUser($_SESSION['id_u'])->rowCount() == 0){ ?>
