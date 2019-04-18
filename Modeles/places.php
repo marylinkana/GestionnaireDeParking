@@ -37,13 +37,13 @@ class Place{
       }
   }
 
-  public function deletePlace($id_p)
+  public function deletePlace($id_p, $reservation)
   {
       global $bdd;
       $req = $bdd->prepare("DELETE FROM places WHERE id_p = :id_p");
       $req->bindValue(':id_p', $id_p, PDO::PARAM_STR);
       $req->execute();
-      deleteReserv($id_p);
+      $reservation->deleteReserv($id_p);
       header('Location:admin');
       return $req->fetch();
   }

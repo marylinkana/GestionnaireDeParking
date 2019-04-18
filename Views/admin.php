@@ -291,7 +291,7 @@
         </tr>
       </thead> <?php
      foreach($req as $v => $r){ ?>
-       <form action="accueil" method="post">
+       <form action="admin" method="post">
          <input type="hidden" name ="id_p" style=" color: white; " class="btn btn-info" value="<?= $r['id_p'] ?> "/>
          <tbody style="border:1px solid black" >
            <tr style="border:1px solid black">

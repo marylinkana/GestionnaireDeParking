@@ -65,7 +65,7 @@ if(isset($_POST['setDateFin'])) {
 
 if(isset($_POST['supprimer'])){
 //var_dump($_POST['id_u']);
-  $req = $place->deletePlace($_POST['id_p']);
+  $req = $place->deletePlace($_POST['id_p'], $reservation);
 }
 
 if(isset($_POST['ajouter'])){
