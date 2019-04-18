@@ -7,15 +7,17 @@
       <input type="password" id="password" name="mdp" class="form-control" placeholder="Password" required="required">
       <label class="checkbox">
         <input type="checkbox" name="remember" value="remember-me"> Remember me
-        <span class="pull-right">
-        <a data-toggle="modal" href=""> Forgot Password?</a>
-        </span>
         </label>
       <input class="btn btn-theme btn-block" type="submit" name="login"  value="Login">
+      <hr>
+      <div class="registration">
+        Pas encore inscrit ?<br/>
+        <a class="btn btn-theme" href="register"> s'inscrire </a>
+      </div>
       <br>
       <div class="registration">
-        Don't have an account yet?<br/>
-        <a class="btn btn-theme" href="register"> Create an account </a>
+        Mot de passe oublié ?<br/>
+        <a class="btn btn-theme" href="reset"> Réinitialiser </a>
       </div>
     </div>
   </form>

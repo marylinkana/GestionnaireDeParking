@@ -11,6 +11,22 @@ if(isset($_POST['rechercheInsc'])){
   $rechercheInsc = $user->getListInscritRecherche($_POST['recherche']);
 }
 
+if(isset($_POST['ecourter'])){
+  var_dump($_POST['id_r']);
+  $ecourter = $reservation->ecourterReserv($_POST['id_r']);
+}
+
+
+if(isset($_POST['addUser'])){
+  //var_dump($_POST['recherche']);
+  $addUser = $user->addUser($_POST);
+}
+
+if(isset($_POST['reset'])){
+  // var_dump($_POST['email']);
+  $req = $user->setPassword($_POST['email']);
+  }
+
 if(isset($_POST['valider'])){
 //var_dump($_POST['id_u']);
   $req = $user->valideInsc($_POST['id_u']);
@@ -24,6 +40,12 @@ if(isset($_POST['bannir'])){
 if(isset($_POST['retirer'])){
 //var_dump($_POST['id_u']);
   $req = $user->dropUser($_POST['id_u']);
+}
+
+if(isset($_POST['attribuer'])){
+  var_dump($_POST['id_u']);
+  $req = $reservation->attribiuteReserv($_POST['id_p'], $_POST['id_u']);
+  var_dump($_POST['id_u']);
 }
 
 if(isset($_POST['annuler'])){

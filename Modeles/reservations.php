@@ -70,12 +70,61 @@ class Reservation{
       return $res;
   }
 
+  public function attribiuteReserv($p, $u)
+  {
+      global $bdd;
+      $dateDebut = date("j-m-y H:i:s");
+      $dateFin = date("j-m-y H.i.s", strtotime("+$this->timeReserv minutes"));
+      //var_dump($this->timeReserv);
+      $res = $bdd->prepare("INSERT INTO reservations (id_us, id_pl, dateDebut, dateFin) VALUES (:id_u, :id_p, :dateDebut, :dateFin)");
+      $res->bindValue(':id_u', $u ,PDO::PARAM_INT);
+      $res->bindValue(':id_p', $p ,PDO::PARAM_INT);
+      $res->bindValue(':dateDebut', $dateDebut ,PDO::PARAM_STR);
+      $res->bindValue(':dateFin', $dateFin,PDO::PARAM_STR);
+      $res->execute();
+      $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
+      $resetRang->execute();
+      header('Location:admin');
+      return $res;
+  }
+
   public function getMyReservList($id_u)
   {
       global $bdd;
       $req = $bdd->query("SELECT * FROM reservations, places, users WHERE id_us = $id_u AND id_u = $id_u
                           AND id_u = id_us AND id_p = id_pl");
       return $req;
+  }
+
+  public function getMyCurrentReserv($id_u){
+    global $bdd;
+    $dateNow = date("j-m-y H:i:s");
+    $req = $bdd->query("SELECT * FROM reservations, places, users WHERE id_us = $id_u AND id_u = $id_u
+                        AND id_u = id_us AND id_p = id_pl AND dateFin > '".$dateNow."' ");
+    return $req;
+  }
+
+  public function getCurrentReserv(){
+    global $bdd;
+    $dateNow = date("j-m-y H:i:s");
+    $req = $bdd->query("SELECT * FROM reservations WHERE dateFin > '".$dateNow."' ");
+    return $req;
+  }
+
+  public function ecourterMyReserv($id_r){
+    global $bdd;
+    $dateNow = date("j-m-y H:i:s");
+    $req = $bdd->query("UPDATE reservations SET dateFin = '".$dateNow ."'WHERE id_r = '".$id_r."' ");
+    header('location:accueil');
+    return $req;
+  }
+
+  public function ecourterReserv($id_r){
+    global $bdd;
+    $dateNow = date("j-m-y H:i:s");
+    $req = $bdd->query("UPDATE reservations SET dateFin = '".$dateNow ."'WHERE id_r = '".$id_r."' ");
+    header('location:admin');
+    return $req;
   }
 
   public function getAllReservList()

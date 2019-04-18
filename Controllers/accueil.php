@@ -12,6 +12,11 @@ if(isset($_POST['reserver'])){
 
 }
 
+if(isset($_POST['ecourter'])){
+  var_dump($_POST['id_r']);
+  $ecourter = $reservation->ecourterMyReserv($_POST['id_r']);
+}
+
 if(isset($_POST['attendre'])){
 //var_dump($_POST['id_u']);
 $req = $file->insertIntoFile($_SESSION['id_u']);

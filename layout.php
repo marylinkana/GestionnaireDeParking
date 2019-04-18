@@ -70,8 +70,8 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="accueil"><img src="img/logo.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Parking M2L</h5>
+          <p class="centered"><a href="profil"><img src="img/logo.jpg" class="img-circle" width="80"></a></p>
+          <h5 class="centered">Mon profil</h5>
           <!-- <li class="mt">
             <a class="javascript:;" id="accu" href="accueil" onclick="ActiveDesactive('accu')">
               <i class="fa fa-home"></i>
@@ -79,14 +79,10 @@
               </a>
           </li> -->
           <li class="sub-menu">
-            <a href="javascript:;"  onclick="ActiveDesactive('accu')">
+            <a class="javascript:;"  href="accueil">
               <i class="fa fa-user"></i>
               <span>Accueil</span>
               </a>
-            <ul class="">
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('rese')">Mes réservations</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px"  onclick="AfficherMasquer('plac')">Places disponibles</button></li>
-            </ul>
           </li>
           <?php
                  if (isset($_SESSION['connecte']) && isset($_SESSION['connecte']) && $_SESSION['connecte'] == true && $_SESSION['niveau'] == 2){
@@ -114,7 +110,6 @@
               </a>
             <ul class="">
               <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('resv')">Reservations</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('duree')">Duree</button></li>
               <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('file')">File</button></li>
               <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('disp')">Disponibilités</button></li>
               <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('cree')">Créer</button></li>
@@ -194,18 +189,6 @@
             divInfo = document.getElementById('user');
             divInfo.style.display = 'none';
           }
-          if ( 'duree' != $id){
-            divInfo = document.getElementById('duree');
-            divInfo.style.display = 'none';
-          }
-          // if ( 'rese' != $id){
-          //   divInfo = document.getElementById('rese');
-          //   divInfo.style.display = 'none';
-          // }
-          // if ( 'plac' != $id){
-          //   divInfo = document.getElementById('plac');
-          //   divInfo.style.display = 'none';
-          // }
           divInfo = document.getElementById($id);
           divInfo.style.display = 'block';
         }
