@@ -80,7 +80,7 @@
           </li> -->
           <li class="sub-menu">
             <a class="javascript:;"  href="accueil">
-              <i class="fa fa-user"></i>
+              <i class="fa fa-home"></i>
               <span>Accueil</span>
               </a>
           </li>

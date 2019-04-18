@@ -82,8 +82,9 @@
       <input type="text" name ="nom" style=" color: black; " class="btn btn-secondary" placeholder="nom" />
       <input type="text" name ="prenom" style=" color: black; " class="btn btn-secondary" placeholder="prenom" />
       <input type="text" name ="email" style=" color: black; " class="btn btn-secondary" placeholder="email" />
-      <input type="text" name ="mdp" style=" color: black; " class="btn btn-secondary" placeholder="mdp" />
-      <input type="submit" name ="addUser" style=" color: white; " class="btn btn-success" value="Ajouter"/>
+      <input type="hidden" name ="mdp" style=" color: black; " class="btn btn-secondary" value="azerty" />
+      <input type="text" style=" color: black; " class="btn btn-secondary" value="mot de passe : azerty" />
+      <input type="submit" name ="addUser" style=" color: white; " class="btn btn-success" value="Insrire"/>
       <hr>
     </form>
      <?php
@@ -131,6 +132,11 @@
 
   <div id="resv" class="text-center" style="display:block">
     <p style="color: black; font-size:50px;">RESERVATIONS</p>
+    <form action="admin" method="post">
+      <input type="text" name ="recherche" style=" color: black; " class="btn btn-secondary" placeholder="recherche" />
+      <input type="submit" name ="rechercheInsc" style=" color: white; " class="btn btn-success" value="Rechercher"/>
+    </form>
+    <hr>
      <?php
       $req = $reservation->getAllReservList()->fetchAll();
       if($reservation->getAllReservList()->rowCount() >= 1){
@@ -198,6 +204,11 @@
 
   <div id="disp" class="text-center" style="display:block">
       <p style="color: black; font-size:50px;">PLACES DISPONIBLES</p>
+      <form action="admin" method="post">
+        <input type="text" name ="recherche" style=" color: black; " class="btn btn-secondary" placeholder="recherche" />
+        <input type="submit" name ="rechercheInsc" style=" color: white; " class="btn btn-success" value="Rechercher"/>
+      </form>
+      <hr>
        <?php
         $req = $place->getListPlacesDispo()->fetchAll();
         ?>
@@ -221,10 +232,10 @@
                   <td style="background-color:#5bc0de;">
                     <input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
                   <td style="background-color:#5bc0de;">
-                    <select type="select" style=" color: black; " class="btn btn-light">
+                    <select type="select" style=" color: black; " class="btn btn-light" name="id_u">
                        <?php $userList = $user->getListUser()->fetchAll();
                        foreach($userList as $v => $u){?>
-                         <option type="email" name="id_u" value="<?= $u['id_u'] ?>" > <?=$u['nom_u']." ".$u['prenom']." ".$u['email'] ?></option>
+                         <option value="<?= $u['id_u'] ?>" > <?=$u['nom_u']." ".$u['prenom']." ".$u['email'] ?></option>
                        <?php } ?>
                     </select>
                   </td>
@@ -252,15 +263,19 @@
        <tr style="text-align: center;">
          <th scope="col" style="text-align: center;" >Rang</th>
          <th scope="col" style="text-align: center;" >Demandeur</th>
+         <th scope="col" style="text-align: center;" >Déplacer</th>
+         <th scope="col" style="text-align: center;" >Supprimer</th>
        </tr>
      </thead> <?php
     $req = $file->getFileList()->fetchAll();
     foreach($req as $v => $r){ ?>
       <form action="admin" method="post">
+        <input type="hidden" name ="rang" style=" color: white; " class="btn btn-info" value="<?= $r['rang'] ?>"/>
         <tbody style="border:1px solid black" >
           <tr style="border:1px solid black">
-            <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $r['rang'] ?>"/></th>
+            <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="rang" style=" color: white; " class="btn btn-info" value="<?= $r['rang'] ?>"/></th>
             <td style="background-color:#5bc0de;"><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?=$r['nom_u']?>"/></td>
+            <td style="background-color:#5bc0de;"><input type="submit" name ="deplacer" style=" color: white; " class="btn btn-warning" value="Déplacer"/></td>
             <td style="background-color:#5bc0de;"><input type="submit" name ="nom" style=" color: white; " class="btn btn-danger" value="supprimer"/></td>
      </form>
    <?php }?>
@@ -276,7 +291,9 @@
     <p style="color: black; font-size:50px;">NOUVELLE PLACES</p>
     <form action="admin" method="post">
       <input type="text" name ="nom" style=" color: black; " class="btn btn-secondary" placeholder="Nom de la place"/>
+      <input type="submit" name ="rechercheInsc" style=" color: white; " class="btn btn-success" value="Rechercher"/>
       <input type="submit" name ="ajouter" style=" color: white; " class="btn btn-success" value="Ajouter"/>
+      <hr>
     </form>
     <br>
     <?php
@@ -297,7 +314,8 @@
            <tr style="border:1px solid black">
              <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
              <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
-             <td style="background-color:#5bc0de;"><input type="submit" name ="supprimer" style=" color: white; " class="btn btn-danger" value="supprimer"/></td>
+             <td style="background-color:#5bc0de;"><input type="submit" name ="supprimer" style=" color: white; " class="btn btn-danger" value="Supprimer"/></td>
+
       </form>
     <?php } ?>
            </tr>

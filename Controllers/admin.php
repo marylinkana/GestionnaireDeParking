@@ -18,7 +18,7 @@ if(isset($_POST['ecourter'])){
 
 
 if(isset($_POST['addUser'])){
-  //var_dump($_POST['recherche']);
+  var_dump($_POST);
   $addUser = $user->addUser($_POST);
 }
 
@@ -43,9 +43,9 @@ if(isset($_POST['retirer'])){
 }
 
 if(isset($_POST['attribuer'])){
-  var_dump($_POST['id_u']);
+  // var_dump($_POST['id_p']);
+  // var_dump($_POST['id_u']);
   $req = $reservation->attribiuteReserv($_POST['id_p'], $_POST['id_u']);
-  var_dump($_POST['id_u']);
 }
 
 if(isset($_POST['annuler'])){
@@ -71,6 +71,11 @@ if(isset($_POST['supprimer'])){
 if(isset($_POST['ajouter'])){
   //var_dump($_POST['id_u']);
   $req = $place->addPlace($_POST['nom']);
+}
+
+if(isset($_POST['deplacer'])){
+  //var_dump($_POST['rang']);
+  $req = $file->deplacer($_POST['rang']);
 }
 
 require"Views/admin.php";

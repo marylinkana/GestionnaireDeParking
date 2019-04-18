@@ -10,7 +10,8 @@ class File{
     $maxRang = $bdd->query("SELECT MAX(rang) FROM users");
     $maxRang = $maxRang->fetch();
     $maxRang = $maxRang['MAX(rang)'] + 1;
-    $req = $bdd->prepare("UPDATE users SET rang = $maxRang WHERE id_u = :id_u");
+    $req = $bdd->prepare("UPDATE users SET rang = :maxRang WHERE id_u = :id_u");
+    $req->bindValue(':maxRang', $maxrang,  PDO::PARAM_INT);
     $req->bindValue(':id_u', $id_u,  PDO::PARAM_INT);
     $req->execute();
     header('Location:accueil');
@@ -28,6 +29,23 @@ class File{
       changeRang();
     }
     return $newFreePlace;
+  }
+
+  public function deplacer($rang)
+  {
+      global $bdd;
+      $rangMoinsUn = $rang-1;
+      $rangPlusUn = $rang+1;
+      $rangProvisoir = 100;
+      $rep = $bdd->prepare("UPDATE users SET rang = $rangProvisoir WHERE rang = '".$rang."' ORDER BY rang ASC");
+      $rep->execute();
+      $rep = $bdd->prepare("UPDATE users SET rang = $rang WHERE rang != 0 AND rang = '".$rangMoinsUn."'  ORDER BY rang ASC");
+      $rep->execute();
+      $rep = $bdd->prepare("UPDATE users SET rang = $rangMoinsUn WHERE rang = '".$rangProvisoir."'  ORDER BY rang ASC");
+      $rep->execute();
+
+      header('location:admin');
+      return $rep;
   }
 
   public function getFileList()
