@@ -103,8 +103,5 @@ if(isset($_POST['deplacer'])){
   $req = $file->deplacer($_POST['rang']);
 }
 
-
-  require"Views/admin.php";
-
-
+require "Views/inscription.php";
 ?>

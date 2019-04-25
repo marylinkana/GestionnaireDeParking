@@ -23,7 +23,7 @@ if(isset($_POST['rechercheResv'])){
 
 if(isset($_POST['recherchePlace'])){
   //var_dump($_POST['recherche']);
-  $recherchePlace = $place->getListPlaceRecherche($_POST['recherche_place']);
+  $recherchePlace = $place->getListPlaceRecherche($_POST['nom']);
 }
 
 if(isset($_POST['encours'])){
@@ -103,8 +103,5 @@ if(isset($_POST['deplacer'])){
   $req = $file->deplacer($_POST['rang']);
 }
 
-
-  require"Views/admin.php";
-
-
+require "Views/newPlace.php";
 ?>

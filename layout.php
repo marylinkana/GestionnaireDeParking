@@ -33,7 +33,7 @@
 
     <header class="header black-bg">
       <div class="sidebar-toggle-box">
-        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Navigation"></div>
+        <!-- <div class="fa fa-bars tooltips" data-placement="left" data-original-title="Navigation"></div> -->
       </div>
       <!--logo start-->
       <a href="accueil" class="logo"><b>PARKING <span> M2L </span></b></a>
@@ -72,49 +72,65 @@
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profil"><img src="img/logo.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">Mon profil</h5>
-          <!-- <li class="mt">
-            <a class="javascript:;" id="accu" href="accueil" onclick="ActiveDesactive('accu')">
-              <i class="fa fa-home"></i>
-              <span>Accueil</span>
-              </a>
-          </li> -->
+
           <li class="sub-menu">
             <a class="javascript:;"  href="accueil">
               <i class="fa fa-home"></i>
               <span>Accueil</span>
               </a>
           </li>
+          <li class="sub-menu">
+            <a class="javascript:;"  href="contact">
+              <i class="fa fa-envelope"></i>
+              <span>Contact</span>
+              </a>
+          </li>
           <?php
                  if (isset($_SESSION['connecte']) && isset($_SESSION['connecte']) && $_SESSION['connecte'] == true && $_SESSION['niveau'] == 2){
           ?>
+          <li class="sub-menu">
+            <a class="javascript:;" href="exportcsv">
+              <i class="fa fa-history"></i>
+              <span>Historique</span>
+              </a>
+          </li>
           <li class="javascript:;" >
-              <a class="javascript:;" href="admin" onclick="ActiveDesactive('admi')">
+              <a class="javascript:;" href="inscription">
+                <i class="fa fa-user-plus"></i>
+                <span>Inscription</span>
+              </a>
+          </li>
+          <li class="javascript:;" >
+              <a class="javascript:;" href="utilisateur">
+                <i class="fa fa-users"></i>
+                <span>Utilisateur</span>
+              </a>
+          </li>
+          <li class="javascript:;" >
+              <a class="javascript:;" href="reservation">
                 <i class="fa fa-dashboard"></i>
-                <span>Admin</span>
+                <span>Reservation</span>
               </a>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;" onclick="ActiveDesactive('memb')">
-              <i class="fa fa-users"></i>
-              <span>Membres</span>
+          <li class="javascript:;" >
+              <a class="javascript:;" href="file">
+                <i class="fa fa-list"></i>
+                <span>File d'attente</span>
               </a>
-            <ul class="">
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('insc')">Inscriptions</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px"  onclick="AfficherMasquer('user')">Utilisateur</button></li>
-            </ul>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;" onclick="ActiveDesactive('park')">
-              <i class="fa fa-car"></i>
-              <span>Parking</span>
+          <li class="javascript:;" >
+              <a class="javascript:;" href="place">
+                <i class="fa fa-car"></i>
+                <span>Place</span>
               </a>
-            <ul class="">
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('resv')">Reservations</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('file')">File</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('disp')">Disponibilités</button></li>
-              <li><button id="afficherMasquer" type="button" class="btn btn-theme" style="width:140px" onclick="AfficherMasquer('cree')">Créer</button></li>
-            </ul>
           </li>
+          <li class="javascript:;" >
+              <a class="javascript:;" href="newPlace">
+                <i class="fa fa-plus"></i>
+                <span>Nouvelle place</span>
+              </a>
+          </li>
+
           <?php } ?>
         </ul>
         <!-- sidebar menu end-->

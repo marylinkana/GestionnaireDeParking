@@ -21,7 +21,14 @@ class User {
   public function getListInscritRecherche($recherche)
   {
     global $bdd;
-    $req = $bdd->query("SELECT * FROM users where  niveau != 1 AND niveau != 2 AND nom_u = '.$recherche.' ");
+    $req = $bdd->query("SELECT * FROM users where  niveau != 1 AND niveau != 2 AND nom_u = '$recherche' OR prenom = '$recherche' ");
+    return $req;
+  }
+
+  public function getListUserRecherche($recherche)
+  {
+    global $bdd;
+    $req = $bdd->query("SELECT * FROM users where  niveau != -1 AND niveau != 0 AND nom_u = '$recherche' OR prenom = '$recherche' ");
     return $req;
   }
 
@@ -52,7 +59,7 @@ class User {
       $req = $bdd->prepare("UPDATE users SET niveau = 1 WHERE id_u = :id_u");
       $req->bindValue(':id_u', $id_u,  PDO::PARAM_INT);
       $req->execute();
-      header('Location:admin');
+      header('Location:inscription');
       return $req->fetch();
   }
 
@@ -62,7 +69,7 @@ class User {
       $req = $bdd->prepare("UPDATE users SET niveau = -1 WHERE id_u = :id_u");
       $req->bindValue(':id_u', $id_u,  PDO::PARAM_INT);
       $req->execute();
-      header('Location:admin');
+      header('Location:utilisateur');
       return $req->fetch();
   }
 
@@ -71,7 +78,7 @@ class User {
       global $bdd;
       $req = $bdd->prepare("DELETE FROM users WHERE id_u =".$id_u);
       $req->execute();
-      header('Location:admin');
+      header('Location:inscription');
       return $req->fetch();
   }
 
@@ -118,7 +125,7 @@ class User {
       $req->bindValue(':mdp', sha1('azerty'),  PDO::PARAM_STR);
       $req->bindValue(':email', $email,  PDO::PARAM_STR);
       $req->execute();
-      header('Location:admin');
+      header('Location:utilisateur');
       return $req->fetch();
     }
   }
@@ -158,7 +165,7 @@ class User {
 
           if($_SESSION['niveau'] == 0){
             echo "<p class='btn btn-warning'><b>Votre demande d'inscription est encore en cours de traitement
-                                                  nous vous remercions de bien vouloir rééseyer sous 24h svp.</b></p>
+                                                  nous vous remercions de bien vouloir réessayer sous 12h svp.</b></p>
                                                   ";
           }
 
@@ -208,33 +215,31 @@ class User {
      $resultat->execute();
      $nombre_email = $resultat->rowCount();
 
-     if($nombre_email < 1){
+     if($nombre_email == 0){
        // Enregistrement de l'utilisateur dans la base de donnees
        $req_insert_user = $bdd->prepare("INSERT INTO users (nom_u, prenom, mdp, email, date_i, niveau, rang)
-                                         VALUES ($nom, $prenom, $mdp, $email, $date_i, $niveau, $rang) " );
-       // $req_insert_user->bindValue(':nom', $nom, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':prenom', $prenom, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':mdp', $mdp, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':date_i', $date_i, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':email', $email, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':niveau', $niveau, PDO::PARAM_INT);
-       // $req_insert_user->bindValue(':rang', $rang, PDO::PARAM_INT);
-       try{
-         $req_insert_user->execute();
-       } catch(PDOException $e) {echo"erreur : insert false"; }
+                                         VALUES (:nom, :prenom, :mdp, :email, :date_i, :niveau, :rang) " );
+       $req_insert_user->bindValue(':nom', $nom, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':email', $email, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':date_i', $date_i, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':niveau', $niveau, PDO::PARAM_INT);
+       $req_insert_user->bindValue(':rang', $rang, PDO::PARAM_INT);
+       // $req_insert_user->execute();
        //var_dump($req_insert_user);
        header("location:login");
-       return $req_insert_user;
+       return $req_insert_user->execute();
      }
     }
   }
 
-  public function addUser($reg) {
+  public function addUser($nom, $prenom, $email, $mdp) {
     global $bdd;
-    $nom =  htmlspecialchars($reg['nom']);
-    $prenom =  htmlspecialchars($reg['prenom']);
-    $email =  htmlspecialchars($reg['email']);
-    $mdp =  sha1(htmlspecialchars($reg['mdp']));
+    $nom =  htmlspecialchars($nom);
+    $prenom =  htmlspecialchars($prenom);
+    $email =  htmlspecialchars($email);
+    $mdp =  sha1(htmlspecialchars($mdp));
     $date_i = date("j-m-y  H:i:s");
     $niveau =  0;
     $rang = 0;
@@ -258,24 +263,22 @@ class User {
      $resultat = $bdd->prepare($email_nouvelle);
      $resultat->execute();
      $nombre_email = $resultat->rowCount();
-
-     if($nombre_email < 1){
+     //var_dump($nombre_email);
+     if($nombre_email == 0){
        // Enregistrement de l'utilisateur dans la base de donnees
        $req_insert_user = $bdd->prepare("INSERT INTO users (nom_u, prenom, mdp, email, date_i, niveau, rang)
-                                         VALUES ($nom, $prenom, $mdp, $email, $date_i, $niveau, $rang) " );
-       // $req_insert_user->bindValue(':nom', $nom, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':prenom', $prenom, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':mdp', $mdp, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':date_i', $date_i, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':email', $email, PDO::PARAM_STR);
-       // $req_insert_user->bindValue(':niveau', $niveau, PDO::PARAM_INT);
-       // $req_insert_user->bindValue(':rang', $rang, PDO::PARAM_INT);
-       try{
-         $req_insert_user->execute();
-       } catch(PDOException $e) {echo"erreur : insert false"; }
-       //var_dump($req_insert_user);
-       header("location:admin");
-       return $req_insert_user;
+                                         VALUES (:nom, :prenom, :mdp, :email, :date_i, :niveau, :rang) " );
+       $req_insert_user->bindValue(':nom', $nom, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':niveau', $niveau, PDO::PARAM_INT);
+       $req_insert_user->bindValue(':date_i', $date_i, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':email', $email, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':rang', $rang, PDO::PARAM_INT);
+       //$req_insert_user->execute();
+       //var_dump($req_insert_user->execute());
+       header("location:inscription");
+       return $req_insert_user->execute();
      }
     }
   }

@@ -32,7 +32,7 @@ class Reservation{
     $setDateFin->bindValue(":id_us", $id_us,PDO::PARAM_INT);
     $setDateFin->bindValue(":id_pl", $id_pl,PDO::PARAM_INT);
     $setDateFin->execute();
-    header('Location:admin');
+    header('Location:reservation');
     return $setDateFin;
   }
 
@@ -58,16 +58,22 @@ class Reservation{
       $dateDebut = date("j-m-y H:i:s");
       $dateFin = date("j-m-y H.i.s", strtotime("+$this->timeReserv minutes"));
       //var_dump($this->timeReserv);
-      $res = $bdd->prepare("INSERT INTO reservations (id_us, id_pl, dateDebut, dateFin) VALUES (:id_u, :id_p, :dateDebut, :dateFin)");
-      $res->bindValue(':id_u', $u ,PDO::PARAM_INT);
-      $res->bindValue(':id_p', $p ,PDO::PARAM_INT);
-      $res->bindValue(':dateDebut', $dateDebut ,PDO::PARAM_STR);
-      $res->bindValue(':dateFin', $dateFin,PDO::PARAM_STR);
-      $res->execute();
-      $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
-      $resetRang->execute();
-      header('Location:accueil');
-      return $res;
+      $verif = $bdd->prepare("SELECT * FROM reservations WHERE id_us = '".$u."' AND dateFin >= '".$dateDebut."'");
+      $verif->execute();
+      $occurence = $verif->rowCount();
+      //var_dump($occurence);
+      if($occurence == 0){
+        $res = $bdd->prepare("INSERT INTO reservations (id_us, id_pl, dateDebut, dateFin) VALUES (:id_u, :id_p, :dateDebut, :dateFin)");
+        $res->bindValue(':id_u', $u ,PDO::PARAM_INT);
+        $res->bindValue(':id_p', $p ,PDO::PARAM_INT);
+        $res->bindValue(':dateDebut', $dateDebut ,PDO::PARAM_STR);
+        $res->bindValue(':dateFin', $dateFin,PDO::PARAM_STR);
+        $res->execute();
+        $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
+        $resetRang->execute();
+        header('Location:accueil');
+        return $res;
+      }
   }
 
   public function attribiuteReserv($p, $u)
@@ -76,16 +82,26 @@ class Reservation{
       $dateDebut = date("j-m-y H:i:s");
       $dateFin = date("j-m-y H.i.s", strtotime("+$this->timeReserv minutes"));
       //var_dump($this->timeReserv);
-      $res = $bdd->prepare("INSERT INTO reservations (id_us, id_pl, dateDebut, dateFin) VALUES (:id_u, :id_p, :dateDebut, :dateFin)");
-      $res->bindValue(':id_u', $u ,PDO::PARAM_INT);
-      $res->bindValue(':id_p', $p ,PDO::PARAM_INT);
-      $res->bindValue(':dateDebut', $dateDebut ,PDO::PARAM_STR);
-      $res->bindValue(':dateFin', $dateFin,PDO::PARAM_STR);
-      $res->execute();
-      $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
-      $resetRang->execute();
-      header('Location:admin');
-      return $res;
+      $verif = "SELECT * FROM reservations WHERE id_us = '".$u."' AND dateFin >= '".$dateDebut."'";
+      $resultat = $bdd->prepare($verif);
+      //var_dump($resultat->execute());
+      $resultat->execute();
+      $occurence = $resultat->rowCount();
+      //var_dump($occurence);
+      if($occurence == 0){
+        $res = $bdd->prepare("INSERT INTO reservations (id_us, id_pl, dateDebut, dateFin) VALUES (:id_u, :id_p, :dateDebut, :dateFin)");
+        $res->bindValue(':id_u', $u ,PDO::PARAM_INT);
+        $res->bindValue(':id_p', $p ,PDO::PARAM_INT);
+        $res->bindValue(':dateDebut', $dateDebut ,PDO::PARAM_STR);
+        $res->bindValue(':dateFin', $dateFin,PDO::PARAM_STR);
+        $res->execute();
+        $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
+        $resetRang->execute();
+        header('Location:place');
+        //var_dump($res);
+        return $res;
+    }
+
   }
 
   public function getMyReservList($id_u)
@@ -107,7 +123,14 @@ class Reservation{
   public function getCurrentReserv(){
     global $bdd;
     $dateNow = date("j-m-y H:i:s");
-    $req = $bdd->query("SELECT * FROM reservations WHERE dateFin > '".$dateNow."' ");
+    $req = $bdd->query("SELECT * FROM reservations, places, users WHERE id_p = id_pl AND id_u = id_us AND dateFin > '".$dateNow."' ");
+    return $req;
+  }
+
+  public function getEndReserv(){
+    global $bdd;
+    $dateNow = date("j-m-y H:i:s");
+    $req = $bdd->query("SELECT * FROM reservations, places, users WHERE id_p = id_pl AND id_u = id_us AND dateFin < '".$dateNow."' ");
     return $req;
   }
 
@@ -123,7 +146,7 @@ class Reservation{
     global $bdd;
     $dateNow = date("j-m-y H:i:s");
     $req = $bdd->query("UPDATE reservations SET dateFin = '".$dateNow ."'WHERE id_r = '".$id_r."' ");
-    header('location:admin');
+    header('location:reservation');
     return $req;
   }
 
@@ -134,6 +157,15 @@ class Reservation{
       return $requete;
   }
 
+  public function getListResvRecherche($recherche)
+  {
+    global $bdd;
+    $req = $bdd->query("SELECT * FROM reservations, places, users where id_p = id_pl AND id_u = id_us
+                        AND id_us IN (SELECT id_u FROM users where  nom_u = '$recherche' OR prenom = '$recherche')
+                        OR id_pl IN (SELECT id_p FROM places where  nom_p = '$recherche')");
+    return $req;
+  }
+
   public function annuleReserv($id_u, $id_r, $date_d)
   {
       global $bdd;
@@ -142,7 +174,7 @@ class Reservation{
       $req->bindValue(':id_r', $id_r,  PDO::PARAM_INT);
       $req->bindValue(':date_d', $date_d,  PDO::PARAM_STR);
       $req->execute();
-      header('Location:admin');
+      header('Location:reservation');
       return $req->fetch();
   }
 
@@ -152,7 +184,7 @@ class Reservation{
       $req = $bdd->prepare("DELETE FROM reservations WHERE id_pl = :id_p");
       $req->bindValue(':id_p', $id_p  ,  PDO::PARAM_INT);
       $req->execute();
-      header('Location:admin');
+      header('Location:reservation');
       return $req->fetch();
   }
 }

@@ -104,7 +104,5 @@ if(isset($_POST['deplacer'])){
 }
 
 
-  require"Views/admin.php";
-
-
+require "Views/file.php";
 ?>

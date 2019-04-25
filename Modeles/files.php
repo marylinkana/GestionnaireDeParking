@@ -11,24 +11,24 @@ class File{
     $maxRang = $maxRang->fetch();
     $maxRang = $maxRang['MAX(rang)'] + 1;
     $req = $bdd->prepare("UPDATE users SET rang = :maxRang WHERE id_u = :id_u");
-    $req->bindValue(':maxRang', $maxrang,  PDO::PARAM_INT);
+    $req->bindValue(':maxRang', $maxRang,  PDO::PARAM_INT);
     $req->bindValue(':id_u', $id_u,  PDO::PARAM_INT);
     $req->execute();
-    header('Location:accueil');
+    var_dump($req->execute());
+  //  header('Location:accueil');
     return $req->fetch();
   }
 
   public function outOfFile()
   {
     global $bdd;
-    $newFreePlace = $place->newFreePlace();
+    $newFreePlace = $place->getListPlacesDispo();
     while($newFreePlace = $newFreePlace->fetch()){
       $fileHead = getFileHead();
-      reserver($newFreePlace['id_pl'], $fileHead['id_u']);
-      resetRang($fileHead['id_u']);
-      changeRang();
+      $reservation->reserver($newFreePlace['id_pl'], $fileHead['id_u']);
+      $user->resetRang($fileHead['id_u']);
+      $user->changeRang();
     }
-    return $newFreePlace;
   }
 
   public function deplacer($rang)
@@ -44,7 +44,7 @@ class File{
       $rep = $bdd->prepare("UPDATE users SET rang = $rangMoinsUn WHERE rang = '".$rangProvisoir."'  ORDER BY rang ASC");
       $rep->execute();
 
-      header('location:admin');
+      header('location:file');
       return $rep;
   }
 

@@ -1,5 +1,5 @@
 <div id="accueil">
-<?php
+<?php //outOfFile();
 if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
   <div class="text-center">
     <p style="color: black; font-size:50px;">MES RESERVATIONS</p>
@@ -34,12 +34,14 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
                 <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
                 <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?=$r['dateDebut']?>"/></td>
                 <td style="background-color:#5bc0de;"><input type="button" name ="date_f" style=" color: white; " class="btn btn-info" value="<?=$r['dateFin']?>"/></td>
+                <td style="background-color:#5bc0de;">
                 <?php $cur = $reservation->getMyCurrentReserv($_SESSION['id_u'])->fetchAll();
                   foreach($cur as $v => $c){
                     if($reservation->getMyCurrentReserv($_SESSION['id_u'])->rowCount() >= 1  && $c['id_r'] == $r['id_r']){
-                        ?><td style="background-color:#5bc0de;"><input type="submit" name ="ecourter" style=" color: white; " class="btn btn-warning" value="Ecourter"/></td><?php
+                        ?><input type="submit" name ="ecourter" style=" color: white; " class="btn btn-warning" value="Ecourter"/><?php
                     }
                   }?>
+                </td>
         </form>
       <?php } ?>
                </tr>
