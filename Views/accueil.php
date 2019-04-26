@@ -15,7 +15,7 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
             <th scope="col" style="text-align: center;" >Place</th>
             <th scope="col" style="text-align: center;" >Debut</th>
             <th scope="col" style="text-align: center;" >Fin</th>
-            <th scope="col" style="text-align: center;" >Ecourter</th><?php
+            <th scope="col" style="text-align: center;" >Ecourter</th>
           </tr>
         </thead> <?php
        foreach($req as $v => $r){ ?>
