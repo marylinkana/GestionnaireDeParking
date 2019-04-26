@@ -39,7 +39,7 @@
                     <td style="background-color:#5bc0de;"><input type="button" name ="prenom" style=" color: white; " class="btn btn-info" value="<?= $r['prenom'] ?>"/></td>
                     <td style="background-color:#5bc0de;"><input type="button" name ="email" style=" color: white; " class="btn btn-info" value="<?= $r['email'] ?>"/></td>
                     <td style="background-color:#5bc0de;"><input type="button" name ="niveau" style=" color: white; " class="btn btn-info"
-                      value="<?php if($r['niveau'] == 1){ echo'Utilisateur' ;} if($r['niveau'] == 2){echo'utilisateuristrateur';} ?>"/></td>
+                      value="<?php if($r['niveau'] == 1){ echo'Utilisateur' ;} if($r['niveau'] == 2){echo'administrateur';} ?>"/></td>
                     <td style="background-color:#5bc0de;"><input type="submit" name ="reset" style=" color: white; " class="btn btn-warning" value="Réinitialiser"/></td>
                     <td style="background-color:#5bc0de;"><input type="submit" name ="bannir" style=" color: white; " class="btn btn-danger" value="Bannir"/></td>
            </form>
