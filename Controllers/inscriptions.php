@@ -82,7 +82,6 @@ if(isset($_POST['annuler'])){
 if(isset($_POST['setDateFin'])) {
   // var_dump($_POST['date_f']);
   // var_dump($_POST['new_date_f']);
-  // var_dump($_POST['id_u']);
   $setDateFin = $reservation->setDateFin($_POST['date_f'], $_POST['new_date_f'], $_POST['id_u'], $_POST['id_p']);
   // var_dump($setDateFin);
 
