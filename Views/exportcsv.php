@@ -25,9 +25,14 @@
                  <?php
                     // inclure le fichier de configuration de la base de données
                     include  'connexion.php' ;
-
                     // récupère les enregistrements de la base de données
-                    $query  =  $bdd->query( "SELECT * FROM reservations, users, places WHERE id_us = id_u AND id_pl = id_p ORDER BY id_r DESC" );
+                    if(isset($_SESSION['niveau']) && $_SESSION['niveau'] == 2){
+                        $query  =  $bdd->query( "SELECT * FROM reservations, users, places WHERE id_us = id_u AND id_pl = id_p ORDER BY id_r DESC" );
+                    }
+                    else{
+                        $query  =  $bdd->query( "SELECT * FROM reservations, users, places WHERE id_us = ".$_SESSION['id_u']." AND id_us = id_u AND id_pl = id_p ORDER BY id_r DESC" );
+                    }
+
                     if ( $query->rowCount()  >  0 ) {
                         while ( $row  =  $query->fetch()) {  ?>
                     <tr>

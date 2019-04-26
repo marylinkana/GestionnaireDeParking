@@ -5,8 +5,12 @@
       include 'connexion.php';
 
       //get records from database
-      $query  =  $bdd->query( "SELECT * FROM reservations, users, places WHERE id_us = id_u AND id_pl = id_p ORDER BY id_r DESC" );
-      if($query->rowCount() > 0){
+      if(isset($_SESSION['niveau']) && $_SESSION['niveau'] == 2){
+          $query  =  $bdd->query( "SELECT * FROM reservations, users, places WHERE id_us = id_u AND id_pl = id_p ORDER BY id_r DESC" );
+      }
+      else{
+          $query  =  $bdd->query( "SELECT * FROM reservations, users, places WHERE id_us = ".$_SESSION['id_u']." AND id_us = id_u AND id_pl = id_p ORDER BY id_r DESC" );
+      }      if($query->rowCount() > 0){
           $delimiter = ";";
           $filename = "Historique_des_réservations_" . date('Y-m-d') . ".csv";
 

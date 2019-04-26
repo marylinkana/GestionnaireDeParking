@@ -85,15 +85,16 @@
               <span>Contact</span>
               </a>
           </li>
-          <?php
-                 if (isset($_SESSION['connecte']) && isset($_SESSION['connecte']) && $_SESSION['connecte'] == true && $_SESSION['niveau'] == 2){
-          ?>
           <li class="sub-menu">
             <a class="javascript:;" href="exportcsv">
               <i class="fa fa-history"></i>
               <span>Historique</span>
               </a>
           </li>
+          <?php
+                 if (isset($_SESSION['connecte']) && isset($_SESSION['connecte']) && $_SESSION['connecte'] == true && $_SESSION['niveau'] == 2){
+          ?>
+
           <li class="javascript:;" >
               <a class="javascript:;" href="inscription">
                 <i class="fa fa-user-plus"></i>

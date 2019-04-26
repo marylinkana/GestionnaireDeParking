@@ -1,7 +1,7 @@
 <?php
  function sendEmail($expediteur, $destinatair, $objet, $corp){
     ini_set("SMTP","smtp.bbox.fr");
-    ini_set("smtp_port","587");
+    ini_set("smtp_port","25");
     ini_set("sendmail_from","admin.parking@m2l.com");
 
     error_reporting( E_ALL );
