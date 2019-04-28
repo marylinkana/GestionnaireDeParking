@@ -14,8 +14,8 @@ class File{
     $req->bindValue(':maxRang', $maxRang,  PDO::PARAM_INT);
     $req->bindValue(':id_u', $id_u,  PDO::PARAM_INT);
     $req->execute();
-    var_dump($req->execute());
-  //  header('Location:accueil');
+  //  var_dump($req->execute());
+    header('Location:accueil');
     return $req->fetch();
   }
 
@@ -59,7 +59,8 @@ class File{
   {
     global $bdd;
     $wetter = $bdd->query("SELECT * FROM users WHERE rang = 1");
-    return $wetter->fetch();
+    return $wetter;
   }
+
 }
 ?>

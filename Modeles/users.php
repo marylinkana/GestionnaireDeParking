@@ -18,6 +18,22 @@ class User {
       return $req;
   }
 
+  public function getInscAValiser()
+  {
+      global $bdd;
+      $req = $bdd->query("SELECT * FROM users where niveau = 0");
+      return $req;
+  }
+
+  public function getUserbannis()
+  {
+      global $bdd;
+      $req = $bdd->query("SELECT * FROM users where niveau = -1");
+      return $req;
+  }
+
+
+
   public function getListInscritRecherche($recherche)
   {
     global $bdd;

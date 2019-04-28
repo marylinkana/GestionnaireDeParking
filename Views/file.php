@@ -20,12 +20,14 @@
   foreach($req as $v => $r){ ?>
     <form action="file" method="post">
       <input type="hidden" name ="rang" style=" color: white; " class="btn btn-info" value="<?= $r['rang'] ?>"/>
+      <input type="hidden" name ="id_u" style=" color: white; " class="btn btn-info" value="<?= $r['id_u'] ?>"/>
+
       <tbody style="border:1px solid black" >
         <tr style="border:1px solid black">
           <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="rang" style=" color: white; " class="btn btn-info" value="<?= $r['rang'] ?>"/></th>
           <td style="background-color:#5bc0de;"><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?=$r['nom_u']?>"/></td>
           <td style="background-color:#5bc0de;"><input type="submit" name ="deplacer" style=" color: white; " class="btn btn-warning" value="Déplacer"/></td>
-          <td style="background-color:#5bc0de;"><input type="submit" name ="nom" style=" color: white; " class="btn btn-danger" value="supprimer"/></td>
+          <td style="background-color:#5bc0de;"><input type="submit" name ="deFile" style=" color: white; " class="btn btn-danger" value="supprimer"/></td>
    </form>
  <?php }?>
         </tr>

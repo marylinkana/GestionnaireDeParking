@@ -138,7 +138,7 @@ class Reservation{
     global $bdd;
     $dateNow = date("j-m-y H:i:s");
     $req = $bdd->query("UPDATE reservations SET dateFin = '".$dateNow ."'WHERE id_r = '".$id_r."' ");
-    header('location:accueil');
+    header('location:exportcsv');
     return $req;
   }
 

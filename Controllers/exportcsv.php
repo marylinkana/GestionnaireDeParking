@@ -1,4 +1,5 @@
 <?php
+require "reservations.php";
 
 if(isset($_POST['download'])){
 //var_dump($_POST['id_u']);

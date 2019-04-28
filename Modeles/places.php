@@ -17,7 +17,6 @@ class Place{
       $dateNow = date("j-m-y H:i:s");
       $requete = $bdd->query("SELECT * FROM places WHERE id_p NOT IN (SELECT id_pl FROM reservations
                               WHERE dateFin > '".$dateNow."') GROUP BY id_p");
-
       return $requete;
   }
 

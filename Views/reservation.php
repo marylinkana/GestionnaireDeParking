@@ -3,6 +3,11 @@
 
       <div id="resv" class="text-center" style="display:block">
         <p style="color: black; font-size:50px;">RESERVATIONS</p>
+        <form method="post" action="exportcsv">
+          <!-- <i class="fa fa-download"/> -->
+          <input type="submit" class="btn btn-success" name="download" value="Exporter le fichier csv"/>
+        </form>
+        <hr/>
         <form action="reservation" method="post">
           <input type="text" name ="recherche_resv" style=" color: black; " class="btn btn-secondary" placeholder="recherche" />
           <input type="submit" name ="rechercheResv" style=" color: white; " class="btn btn-success" value="Rechercher"/>
@@ -10,6 +15,9 @@
           <input type="submit" name ="terminee" style=" color: white; " class="btn btn-success" value="Terminée"/>
         </form>
         <hr>
+
+
+
          <?php
          if(isset($rechercheResv)){
            $req = $rechercheResv->fetchAll();
@@ -42,7 +50,14 @@
                        <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['nom_p'] ?>"/></td>
                        <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/></td>
                        <td style="background-color:#5bc0de;"><input type="text" name ="new_date_f" style=" color: black; " class="btn btn-light" value="<?= $r['dateFin'] ?>"/></td>
-                       <td style="background-color:#5bc0de;"><input type="submit" name ="setDateFin" style=" color: white; " class="btn btn-warning" value="Modifier"/></td>
+                       <td style="background-color:#5bc0de;">
+                         <?php $cur = $reservation->getCurrentReserv()->fetchAll();
+                           foreach($cur as $v => $c){
+                             if($reservation->getCurrentReserv()->rowCount() > 0  && $c['id_r'] == $r['id_r']){
+                                 ?><input type="submit" name ="setDateFin" style=" color: white; " class="btn btn-warning" value="Modifier"/> <?php
+                             }
+                           }?>
+                       </td>
                        <td style="background-color:#5bc0de;">
                          <?php $cur = $reservation->getCurrentReserv()->fetchAll();
                            foreach($cur as $v => $c){
@@ -61,6 +76,9 @@
           }
           else{echo "<p class='btn btn-warning'><b> aucun résultat trouvé pour ".$POST[recherche_resv]." !</b></p>";}
          }
+
+
+
            if(isset($currentResv)){
              $req = $currentResv->fetchAll();
              if($currentResv->rowCount() > 0){
@@ -92,11 +110,18 @@
                          <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['nom_p'] ?>"/></td>
                          <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/></td>
                          <td style="background-color:#5bc0de;"><input type="text" name ="new_date_f" style=" color: black; " class="btn btn-light" value="<?= $r['dateFin'] ?>"/></td>
-                         <td style="background-color:#5bc0de;"><input type="submit" name ="setDateFin" style=" color: white; " class="btn btn-warning" value="Modifier"/></td>
                          <td style="background-color:#5bc0de;">
                            <?php $cur = $reservation->getCurrentReserv()->fetchAll();
                              foreach($cur as $v => $c){
-                               if($reservation->getCurrentReserv()->rowCount() >= 1  && $c['id_r'] == $r['id_r']){
+                               if($reservation->getCurrentReserv()->rowCount() > 0  && $c['id_r'] == $r['id_r']){
+                                   ?><input type="submit" name ="setDateFin" style=" color: white; " class="btn btn-warning" value="Modifier"/> <?php
+                               }
+                             }?>
+                         </td>
+                         <td style="background-color:#5bc0de;">
+                           <?php $cur = $reservation->getCurrentReserv()->fetchAll();
+                             foreach($cur as $v => $c){
+                               if($reservation->getCurrentReserv()->rowCount() > 0  && $c['id_r'] == $r['id_r']){
                                    ?> <input type="submit" name ="ecourter" style=" color: white; " class="btn btn-warning" value="Ecourter"/> <?php
                                }
                              }?>
@@ -111,6 +136,9 @@
             }
             else{echo "<p class='btn btn-warning'><b> aucune réservation en cours !</b></p>";}
            }
+
+
+
              if(isset($endResv)){
                $req = $endResv->fetchAll();
                if($endResv->rowCount() > 0){
@@ -142,11 +170,18 @@
                            <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['nom_p'] ?>"/></td>
                            <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/></td>
                            <td style="background-color:#5bc0de;"><input type="text" name ="new_date_f" style=" color: black; " class="btn btn-light" value="<?= $r['dateFin'] ?>"/></td>
-                           <td style="background-color:#5bc0de;"><input type="submit" name ="setDateFin" style=" color: white; " class="btn btn-warning" value="Modifier"/></td>
                            <td style="background-color:#5bc0de;">
                              <?php $cur = $reservation->getCurrentReserv()->fetchAll();
                                foreach($cur as $v => $c){
-                                 if($reservation->getCurrentReserv()->rowCount() >= 1  && $c['id_r'] == $r['id_r']){
+                                 if($reservation->getCurrentReserv()->rowCount() > 0  && $c['id_r'] == $r['id_r']){
+                                     ?><input type="submit" name ="setDateFin" style=" color: white; " class="btn btn-warning" value="Modifier"/> <?php
+                                 }
+                               }?>
+                           </td>
+                           <td style="background-color:#5bc0de;">
+                             <?php $cur = $reservation->getCurrentReserv()->fetchAll();
+                               foreach($cur as $v => $c){
+                                 if($reservation->getCurrentReserv()->rowCount() > 0  && $c['id_r'] == $r['id_r']){
                                      ?> <input type="submit" name ="ecourter" style=" color: white; " class="btn btn-warning" value="Ecourter"/> <?php
                                  }
                                }?>
@@ -161,6 +196,9 @@
               }
               else{echo "<p class='btn btn-warning'><b> aucun résultat trouvé pour ".$POST[recherche_resv]." !</b></p>";}
              }
+
+
+
              if(!isset($rechercheResv) && !isset($currentResv) && !isset($endResv)){
               $req = $reservation->getAllReservList()->fetchAll();
               if($reservation->getAllReservList()->rowCount() > 0){
@@ -192,11 +230,18 @@
                           <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['nom_p'] ?>"/></td>
                           <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/></td>
                           <td style="background-color:#5bc0de;"><input type="text" name ="new_date_f" style=" color: black; " class="btn btn-light" value="<?= $r['dateFin'] ?>"/></td>
-                          <td style="background-color:#5bc0de;"><input type="submit" name ="setDateFin" style=" color: white; " class="btn btn-warning" value="Modifier"/></td>
                           <td style="background-color:#5bc0de;">
                             <?php $cur = $reservation->getCurrentReserv()->fetchAll();
                               foreach($cur as $v => $c){
-                                if($reservation->getCurrentReserv()->rowCount() >= 1  && $c['id_r'] == $r['id_r']){
+                                if($reservation->getCurrentReserv()->rowCount() > 0  && $c['id_r'] == $r['id_r']){
+                                    ?><input type="submit" name ="setDateFin" style=" color: white; " class="btn btn-warning" value="Modifier"/> <?php
+                                }
+                              }?>
+                          </td>
+                          <td style="background-color:#5bc0de;">
+                            <?php $cur = $reservation->getCurrentReserv()->fetchAll();
+                              foreach($cur as $v => $c){
+                                if($reservation->getCurrentReserv()->rowCount() > 0  && $c['id_r'] == $r['id_r']){
                                     ?> <input type="submit" name ="ecourter" style=" color: white; " class="btn btn-warning" value="Ecourter"/> <?php
                                 }
                               }?>

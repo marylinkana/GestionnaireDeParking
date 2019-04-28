@@ -3,8 +3,15 @@ require "reservations.php";
 require "places.php";
 require "files.php";
 require "users.php";
-//require "Modeles/fonctions.php";
-//require "Modeles/accueil.php";
+
+// var_dump($place->getListPlacesDispo()->fetch());
+ if($newFreePlace = $place->getListPlacesDispo()->fetch()){
+    $fileHead = $file->getFileHead()->fetch();
+//    var_dump($fileHead);
+//    $reservation->createReserv($newFreePlace['id_p'], $fileHead['id_u']);
+    $user->resetRang($fileHead['id_u']);
+    $user->changeRang();
+ }
 
 if(isset($_POST['reserver'])){
 //var_dump($_POST['id_u']);
