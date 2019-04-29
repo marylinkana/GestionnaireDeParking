@@ -116,7 +116,7 @@ if(isset($_SESSION['niveau']) && $_SESSION['niveau'] == 2){?>
         <th scope="col" style="text-align: center;" >Prenom</th>
         <th scope="col" style="text-align: center;" >Email</th>
         <th scope="col" style="text-align: center;" >Niveau</th>
-        <th scope="col" style="text-align: center;" >Valider</th>
+        <th scope="col" style="text-align: center;" >Débanir</th>
         <th scope="col" style="text-align: center;" >Supprimer</th>
       </tr>
     </thead> <?php
@@ -131,7 +131,7 @@ if(isset($_SESSION['niveau']) && $_SESSION['niveau'] == 2){?>
            <td style="background-color:#5bc0de;" ><input type="button" name ="email" style=" color: white; " class="btn btn-info" value="<?= $r['email'] ?>"/></td>
            <td style="background-color:#5bc0de;" ><input type="button" name ="niveau" style=" color: white; " class="btn btn-info"
                value="<?php if($r['niveau'] == 0){ echo'A valider' ;} if($r['niveau'] == -1){echo'Banni';} ?>"/></td>
-           <td style="background-color:#5bc0de;" ><input type="submit" name ="valider" style=" color: white; " class="btn btn-success" value="Valider"/></td>
+           <td style="background-color:#5bc0de;" ><input type="submit" name ="valider" style=" color: white; " class="btn btn-warning" value="Débanir"/></td>
            <td style="background-color:#5bc0de;"><input type="submit" name ="retirer" style=" color: white; " class="btn btn-danger" value="supprimer"/></td>
     </form>
   <?php } ?>
