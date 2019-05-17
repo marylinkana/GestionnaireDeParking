@@ -2,9 +2,9 @@
   <form method="post">
     <h2 class="form-login-heading">Login</h2>
     <div class="login-wrap">
-      <input type="email" id="email" name="email" class="form-control" value="admin.parking@m2l.com" required="required" autofocus="autofocus">
+      <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
       <br>
-      <input type="password" id="password" name="mdp" class="form-control" value="azerty" required="required">
+      <input type="password" id="password" name="mdp" class="form-control" placeholder="Password" required="required">
       <label class="checkbox">
         <input type="checkbox" name="remember" value="remember-me"> Remember me
         </label>

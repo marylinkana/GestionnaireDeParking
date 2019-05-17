@@ -143,7 +143,7 @@ if(isset($_SESSION['niveau']) && $_SESSION['niveau'] == 2){?>
 }
 
 
-  if(isset($user) && !isset($aValider) && !isset($bannis)){
+  if(isset($user) && !isset($rechercheInsc) && !isset($aValider) && !isset($bannis)){
     $req = $user->getListInscrit()->fetchAll();
     if($user->getListInscrit()->rowCount() >= 1){
     ?>

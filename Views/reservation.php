@@ -74,7 +74,7 @@
                  </tbody>
                </table> <?php
           }
-          else{echo "<p class='btn btn-warning'><b> aucun résultat trouvé pour ".$POST[recherche_resv]." !</b></p>";}
+          else{echo "<p class='btn btn-warning'><b> aucun résultat trouvé ".$_POST['recherche_resv']." !</b></p>";}
          }
 
 
@@ -194,7 +194,7 @@
                      </tbody>
                    </table> <?php
               }
-              else{echo "<p class='btn btn-warning'><b> aucun résultat trouvé pour ".$POST[recherche_resv]." !</b></p>";}
+              else{echo "<p class='btn btn-warning'><b> aucun résultat trouvé !</b></p>";}
              }
 
 
