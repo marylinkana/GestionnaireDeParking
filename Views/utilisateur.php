@@ -89,7 +89,7 @@
             </tbody>
           </table> <?php
      }
-     else{echo "<p class='btn btn-warning'><b> Aucune Utilisateur !</b></p>";}
+     else{echo "<p class='btn btn-warning'><b> Aucun Utilisateur !</b></p>";}
     } ?>
          <br/>
          <br/>

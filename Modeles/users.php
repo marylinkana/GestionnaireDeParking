@@ -207,7 +207,7 @@ class User {
     $prenom =  htmlspecialchars($reg['prenom']);
     $email =  htmlspecialchars($reg['email']);
     $mdp =  sha1(htmlspecialchars($reg['mdp']));
-    $date_i = date("j-m-y  H:i:s");
+    $dateInsc = date("j-m-y H:i:s");
     $niveau =  0;
     $rang = 0;
 
@@ -233,13 +233,13 @@ class User {
 
      if($nombre_email == 0){
        // Enregistrement de l'utilisateur dans la base de donnees
-       $req_insert_user = $bdd->prepare("INSERT INTO users (nom_u, prenom, mdp, email, date_i, niveau, rang)
-                                         VALUES (:nom, :prenom, :mdp, :email, :date_i, :niveau, :rang) " );
+       $req_insert_user = $bdd->prepare("INSERT INTO users (nom_u, prenom, mdp, email, dateInsc, niveau, rang)
+                                         VALUES (:nom, :prenom, :mdp, :email, :dateInsc, :niveau, :rang) " );
        $req_insert_user->bindValue(':nom', $nom, PDO::PARAM_STR);
        $req_insert_user->bindValue(':prenom', $prenom, PDO::PARAM_STR);
        $req_insert_user->bindValue(':mdp', $mdp, PDO::PARAM_STR);
        $req_insert_user->bindValue(':email', $email, PDO::PARAM_STR);
-       $req_insert_user->bindValue(':date_i', $date_i, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':dateInsc', $dateInsc, PDO::PARAM_STR);
        $req_insert_user->bindValue(':niveau', $niveau, PDO::PARAM_INT);
        $req_insert_user->bindValue(':rang', $rang, PDO::PARAM_INT);
        // $req_insert_user->execute();
@@ -256,10 +256,9 @@ class User {
     $prenom =  htmlspecialchars($prenom);
     $email =  htmlspecialchars($email);
     $mdp =  sha1(htmlspecialchars($mdp));
-    $date_i = date("j-m-y  H:i:s");
+    $dateInsc = date("j-m-y H:i:s");
     $niveau =  0;
     $rang = 0;
-
 
     if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $email)){
       $email_verif = 'ok';
@@ -282,19 +281,28 @@ class User {
      //var_dump($nombre_email);
      if($nombre_email == 0){
        // Enregistrement de l'utilisateur dans la base de donnees
-       $req_insert_user = $bdd->prepare("INSERT INTO users (nom_u, prenom, mdp, email, date_i, niveau, rang)
-                                         VALUES (:nom, :prenom, :mdp, :email, :date_i, :niveau, :rang) " );
+       $req_insert_user = $bdd->prepare("INSERT INTO users (nom_u, prenom, mdp, email, dateInsc, niveau, rang)
+                                         VALUES (:nom, :prenom, :mdp, :email, :dateInsc, :niveau, :rang) " );
        $req_insert_user->bindValue(':nom', $nom, PDO::PARAM_STR);
        $req_insert_user->bindValue(':prenom', $prenom, PDO::PARAM_STR);
        $req_insert_user->bindValue(':mdp', $mdp, PDO::PARAM_STR);
-       $req_insert_user->bindValue(':niveau', $niveau, PDO::PARAM_INT);
-       $req_insert_user->bindValue(':date_i', $date_i, PDO::PARAM_STR);
        $req_insert_user->bindValue(':email', $email, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':dateInsc', $dateInsc, PDO::PARAM_STR);
+       $req_insert_user->bindValue(':niveau', $niveau, PDO::PARAM_INT);
        $req_insert_user->bindValue(':rang', $rang, PDO::PARAM_INT);
-       //$req_insert_user->execute();
-       //var_dump($req_insert_user->execute());
-       header("location:inscription");
-       return $req_insert_user->execute();
+       // var_dump($req_insert_user->bindValue(':nom', $nom, PDO::PARAM_STR));
+       // var_dump($req_insert_user->bindValue(':prenom', $prenom, PDO::PARAM_STR));
+       // var_dump($req_insert_user->bindValue(':mdp', $mdp, PDO::PARAM_STR));
+       // var_dump($req_insert_user->bindValue(':email', $email, PDO::PARAM_STR));
+       // var_dump($req_insert_user->bindValue(':dateInsc', $dateInsc, PDO::PARAM_STR));
+       // var_dump($req_insert_user->bindValue(':niveau', $niveau, PDO::PARAM_INT));
+       // var_dump($req_insert_user->bindValue(':rang', $rang, PDO::PARAM_INT));
+       //var_dump($req_insert_user);
+       $req_insert_user = $req_insert_user->execute();
+       // var_dump($req_insert_user);
+       // header("location:inscription");
+       echo "<p class='btn btn-success'><b>inscription réussi</b></p>";
+       return $req_insert_user;
      }
     }
   }

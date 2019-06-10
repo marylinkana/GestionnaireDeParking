@@ -33,7 +33,7 @@
 
     <header class="header black-bg">
       <div class="sidebar-toggle-box">
-        <!-- <div class="fa fa-bars tooltips" data-placement="left" data-original-title="Navigation"></div> -->
+        <div class="fa fa-bars tooltips" data-placement="left" data-original-title="Navigation"></div>
       </div>
       <!--logo start-->
       <a href="accueil" class="logo"><b>PARKING <span> M2L </span></b></a>
@@ -98,19 +98,19 @@
           <li class="javascript:;" >
               <a class="javascript:;" href="inscription">
                 <i class="fa fa-user-plus"></i>
-                <span>Inscription</span>
+                <span>Inscriptions</span>
               </a>
           </li>
           <li class="javascript:;" >
               <a class="javascript:;" href="utilisateur">
                 <i class="fa fa-users"></i>
-                <span>Utilisateur</span>
+                <span>Utilisateurs</span>
               </a>
           </li>
           <li class="javascript:;" >
               <a class="javascript:;" href="reservation">
                 <i class="fa fa-dashboard"></i>
-                <span>Reservation</span>
+                <span>Reservations  </span>
               </a>
           </li>
           <li class="javascript:;" >
@@ -122,7 +122,13 @@
           <li class="javascript:;" >
               <a class="javascript:;" href="place">
                 <i class="fa fa-car"></i>
-                <span>Place</span>
+                <span>Attribution</span>
+              </a>
+          </li>
+          <li class="javascript:;" >
+              <a class="javascript:;" href="cout">
+                <i class="fa fa-dollar"></i>
+                <span>Couts</span>
               </a>
           </li>
           <li class="javascript:;" >

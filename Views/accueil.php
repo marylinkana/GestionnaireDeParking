@@ -1,5 +1,5 @@
 <div id="accueil">
-<?php 
+<?php
 if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
   <div class="text-center">
       <p style="color: black; font-size:50px;">PLACES DISPONIBLES</p>
@@ -27,6 +27,7 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
               </tr>
             </tbody>
           </table> <?php
+          //var_dump($place->getListPlacesDispo()->rowCount());
         if($place->getListPlacesDispo()->rowCount() < 1){
           echo "<p class='btn btn-warning'><b> aucune place n'est disponible pour la moment !</b></p>";
           if($user->getRankUser($_SESSION['id_u'])->rowCount() == 0){ ?>

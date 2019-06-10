@@ -10,7 +10,7 @@ if(isset($_POST['setTimeReserv'])){
 }
 
 if(!isset($reservation)){
-    $reservation = new Reservation(60);
+    $reservation = new Reservation(1440);
   }
 
 ?>

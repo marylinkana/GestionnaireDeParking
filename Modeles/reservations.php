@@ -71,8 +71,13 @@ class Reservation{
         $res->execute();
         $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
         $resetRang->execute();
-        header('Location:accueil');
+        // echo "<p class='btn btn-warning'><b>Réservation réussi</b></p>";
+        // header('Location:accueil');
+        echo "<p class='btn btn-success'><b>Réservation réussi</b></p>";
         return $res;
+      }
+      else{
+        echo "<p class='btn btn-warning'><b>Vous avez déjà une réservation en cours! Veillez consulter votre historique</b></p>";
       }
   }
 
@@ -97,10 +102,15 @@ class Reservation{
         $res->execute();
         $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
         $resetRang->execute();
-        header('Location:place');
+        // echo "<p class='btn btn-success'><b>Attribution réussi</b></p>";
+        // header('Location:place');
+        echo "<p class='btn btn-success'><b>Attribution réussi</b></p>";
         //var_dump($res);
         return $res;
-    }
+     }
+     else{
+       echo "<p class='btn btn-warning'><b>cet utilisateur a déjà une réservation en cours! Veillez Consulter la liste des réservations</b></p>";
+     }
 
   }
 
@@ -187,6 +197,41 @@ class Reservation{
       header('Location:reservation');
       return $req->fetch();
   }
+
+  public function getCategories()
+  {
+      global $bdd;
+      $req = $bdd->query("SELECT * FROM categories");
+      return $req;
+  }
+
+  public function addPlaceToCategories($p, $c)
+  {
+      global $bdd;
+      $verif = "SELECT * FROM couts WHERE id_place = '".$p."'";
+      $resultat = $bdd->prepare($verif);
+      //var_dump($resultat->execute());
+      $resultat->execute();
+      $occurence = $resultat->rowCount();
+      //var_dump($occurence);
+      if($occurence == 0){
+        $res = $bdd->prepare("INSERT INTO couts (id_place, id_cat) VALUES ($p, $c)");
+        // $res->bindValue(':id_p', $p ,PDO::PARAM_INT);
+        // $res->bindValue(':id_c', $c ,PDO::PARAM_INT);
+        $res->execute();
+        // echo "<p class='btn btn-success'><b>Attribution réussi</b></p>";
+        // header('Location:place');
+        echo "<p class='btn btn-success'><b>Attribution réussi</b></p>";
+        var_dump($res->execute());
+        return $res->fetch();
+      }
+      else{
+        $res = $bdd->prepare("UPDATE couts SET id_cat = $c WHERE id_p = $p");
+        $res->execute();
+        echo "<p class='btn btn-success'><b>Attribution réussi</b></p>";
+      }
+  }
+
 }
 
 
