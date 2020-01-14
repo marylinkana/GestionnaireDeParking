@@ -19,8 +19,13 @@ if(isset($_POST['reserver'])){
 }
 
 if(isset($_POST['ecourter'])){
-  var_dump($_POST['id_r']);
+  // var_dump($_POST['id_r']);
   $ecourter = $reservation->ecourterMyReserv($_POST['id_r']);
+}
+
+if(isset($_POST['changer'])){
+  // var_dump($_POST['id_r']);
+  $changer = $reservation->changerMyReserv($_POST['id_r'], $_POST['id_p'] );
 }
 
 if(isset($_POST['attendre'])){

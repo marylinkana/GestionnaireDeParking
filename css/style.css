@@ -1624,7 +1624,7 @@ PANELS CONFIGURATIONS
 
 /* Grid Showcase*/
 
-	margin-bottom: 15px;
+	margin-bottom:15px;
 }
 
 .show-grid [class^=col-] {
@@ -3165,7 +3165,7 @@ ul.chat-available-user li a:hover {
     /* Safari and Chrome */
     .panel-footer.revenue-foot {
         margin-bottom: -4px;
-    };
+    }
     }
 
 

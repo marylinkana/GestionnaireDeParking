@@ -15,7 +15,7 @@ class Place{
   {
       global $bdd;
       $dateNow = date("j-m-y H:i:s");
-      $requete = $bdd->query("SELECT * FROM places WHERE id_p NOT IN (SELECT id_pl FROM reservations
+      $requete = $bdd->query("SELECT * FROM places, couts, categories WHERE id_p = id_place AND id_cat = id_c AND id_p NOT IN (SELECT id_pl FROM reservations
                               WHERE dateFin > '".$dateNow."') GROUP BY id_p");
       return $requete;
   }
@@ -23,7 +23,7 @@ class Place{
   public function getListPlaceRecherche($place){
     global $bdd;
     $dateNow = date("j-m-y H:i:s");
-    $requete = $bdd->query("SELECT * FROM places WHERE nom_p = '".$place."' AND id_p NOT IN (SELECT id_pl FROM reservations
+    $requete = $bdd->query("SELECT * FROM places, couts, categories WHERE id_p = id_place AND id_cat = id_c AND nom_p = '".$place."' AND id_p NOT IN (SELECT id_pl FROM reservations
                             WHERE dateFin > '".$dateNow."') GROUP BY id_p");
 
     return $requete;

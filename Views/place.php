@@ -17,6 +17,7 @@
                 <tr style="text-align: center;">
                   <th scope="col" style="text-align: center;" >#</th>
                   <th scope="col" style="text-align: center;" >Places</th>
+                  <th scope="col" style="text-align: center;" >Couts</th>
                   <th scope="col" style="text-align: center;" >Attribuer à</th>
                   <th scope="col" style="text-align: center;" >Attibuer</th>
 
@@ -31,6 +32,8 @@
                        <input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
                        <td style="background-color:#5bc0de;">
                          <input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
+                       <td style="background-color:#5bc0de;">
+                         <input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['prix'].'€/h'?>"/></td>
                        <td style="background-color:#5bc0de;">
                          <select type="select" style=" color: black; " class="btn btn-light" name="id_u">
                             <?php $userList = $user->getListUser()->fetchAll();
@@ -57,6 +60,7 @@
                <tr style="text-align: center;">
                  <th scope="col" style="text-align: center;" >#</th>
                  <th scope="col" style="text-align: center;" >Places</th>
+                 <th scope="col" style="text-align: center;" >Coûts</th>
                  <th scope="col" style="text-align: center;" >Attribuer à</th>
                  <th scope="col" style="text-align: center;" >Attibuer</th>
 
@@ -71,6 +75,8 @@
                       <input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
                       <td style="background-color:#5bc0de;">
                         <input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
+                      <td style="background-color:#5bc0de;">
+                        <input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['prix'].'€/h'?>"/></td>
                       <td style="background-color:#5bc0de;">
                         <select type="select" style=" color: black; " class="btn btn-light" name="id_u">
                            <?php $userList = $user->getListUser()->fetchAll();

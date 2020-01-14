@@ -15,9 +15,13 @@
             <th scope="col" style="text-align: center;" >#</th>
             <th scope="col" style="text-align: center;" >Nom</th>
             <th scope="col" style="text-align: center;" >Place</th>
+            <th scope="col" style="text-align: center;" >autres</th>
+            <th scope="col" style="text-align: center;" >Coûts</th>
             <th scope="col" style="text-align: center;" >Debut</th>
             <th scope="col" style="text-align: center;" >Fin</th>
             <th scope="col" style="text-align: center;" >Ecourter</th>
+            <th scope="col" style="text-align: center;" >Changer</th>
+
           </tr>
         </thead> <?php
        foreach($req as $v => $r){ ?>
@@ -32,6 +36,15 @@
                 <th scope="row" style="text-align: center; background-color:#5bc0de;"><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
                 <td style="background-color:#5bc0de;"><input type="button" name ="nom_u" style=" color: white; " class="btn btn-info" value="<?=$r['nom_u']?>"/></td>
                 <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
+                <td style="background-color:#5bc0de;">
+                  <select type="select" style=" color: black; " class="btn btn-light" name="id_u">
+                     <?php $placeList = $place->getListPlacesDispo()->fetchAll();
+                     foreach($placeList as $v => $p){?>
+                       <option value="<?= $p['id_p'] ?>" > <?=$p['nom_p'] ?></option>
+                     <?php } ?>
+                  </select>
+                </td>
+                <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['prix'].'€/h'?>"/></td>
                 <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?=$r['dateDebut']?>"/></td>
                 <td style="background-color:#5bc0de;"><input type="button" name ="date_f" style=" color: white; " class="btn btn-info" value="<?=$r['dateFin']?>"/></td>
                 <td style="background-color:#5bc0de;">
@@ -39,6 +52,14 @@
                   foreach($cur as $v => $c){
                     if($reservation->getMyCurrentReserv($_SESSION['id_u'])->rowCount() >= 1  && $c['id_r'] == $r['id_r']){
                         ?><input type="submit" name ="ecourter" style=" color: white; " class="btn btn-warning" value="Ecourter"/><?php
+                    }
+                  }?>
+                </td>
+                <td style="background-color:#5bc0de;">
+                <?php $cur = $reservation->getMyCurrentReserv($_SESSION['id_u'])->fetchAll();
+                  foreach($cur as $v => $c){
+                    if($reservation->getMyCurrentReserv($_SESSION['id_u'])->rowCount() >= 1  && $c['id_r'] == $r['id_r']){
+                        ?><input type="submit" name ="changer" style=" color: white; " class="btn btn-warning" value="Changer"/><?php
                     }
                   }?>
                 </td>

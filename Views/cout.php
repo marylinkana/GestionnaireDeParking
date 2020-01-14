@@ -6,7 +6,8 @@
        foreach($placeList as $v => $u){ ?>
          <option value="<?= $u['id_p'] ?>" > <?=$u['nom_p'] ?></option>
        <?php } ?>
-    </select>    <br>
+    </select>
+    <br>
     <!-- <input type="email" id="destinatair" name="destinatair" class="form-control" placeholder="Destinatair" required="required" autofocus="autofocus"> -->
     <select type="select" id="destinatair" style=" color: black; " class="form-control" name="id_c">
        <?php $categories = $reservation->getCategories()->fetchAll();

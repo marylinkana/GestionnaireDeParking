@@ -57,27 +57,40 @@ class Reservation{
       global $bdd;
       $dateDebut = date("j-m-y H:i:s");
       $dateFin = date("j-m-y H.i.s", strtotime("+$this->timeReserv minutes"));
+      $int_bas = date('j-m-y 00:00:00');
+      $int_haut = date('j-m-y 23:59:59');
       //var_dump($this->timeReserv);
-      $verif = $bdd->prepare("SELECT * FROM reservations WHERE id_us = '".$u."' AND dateFin >= '".$dateDebut."'");
+      $verif = $bdd->prepare("SELECT * FROM reservations WHERE id_us = '".$u."'
+                              AND dateDebut >= '".$int_bas."' AND dateDebut <= '".$int_haut."' ");
+      //var_dump($verif);
       $verif->execute();
+      // var_dump($verif->execute());
       $occurence = $verif->rowCount();
-      //var_dump($occurence);
-      if($occurence == 0){
-        $res = $bdd->prepare("INSERT INTO reservations (id_us, id_pl, dateDebut, dateFin) VALUES (:id_u, :id_p, :dateDebut, :dateFin)");
-        $res->bindValue(':id_u', $u ,PDO::PARAM_INT);
-        $res->bindValue(':id_p', $p ,PDO::PARAM_INT);
-        $res->bindValue(':dateDebut', $dateDebut ,PDO::PARAM_STR);
-        $res->bindValue(':dateFin', $dateFin,PDO::PARAM_STR);
-        $res->execute();
-        $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
-        $resetRang->execute();
-        // echo "<p class='btn btn-warning'><b>Réservation réussi</b></p>";
-        // header('Location:accueil');
-        echo "<p class='btn btn-success'><b>Réservation réussi</b></p>";
-        return $res;
+      // var_dump($occurence);
+      $next_verif = $bdd->prepare("SELECT * FROM reservations WHERE id_us = '".$u."' AND dateFin >= '".$dateDebut."' ");
+      $next_verif->execute();
+      $next_occurence = $next_verif->rowCount();
+      if($next_occurence == 0){
+        if($occurence == 0){
+          $res = $bdd->prepare("INSERT INTO reservations (id_us, id_pl, dateDebut, dateFin) VALUES (:id_u, :id_p, :dateDebut, :dateFin)");
+          $res->bindValue(':id_u', $u ,PDO::PARAM_INT);
+          $res->bindValue(':id_p', $p ,PDO::PARAM_INT);
+          $res->bindValue(':dateDebut', $dateDebut ,PDO::PARAM_STR);
+          $res->bindValue(':dateFin', $dateFin,PDO::PARAM_STR);
+          $res->execute();
+          $resetRang = $bdd->prepare("UPDATE users SET rang = 0 WHERE id_u = $u");
+          $resetRang->execute();
+          // echo "<p class='btn btn-warning'><b>Réservation réussi</b></p>";
+          //header('Location:accueil');
+          echo "<p class='btn btn-success'><b>Réservation réussi. Veillez consulter votre historique.</b></p>";
+          return $res;
+        }
+        else{
+          echo "<p class='btn btn-warning'><b>Vous avez déjà une réservation en cours! Veillez consulter votre historique.</b></p>";
+        }
       }
       else{
-        echo "<p class='btn btn-warning'><b>Vous avez déjà une réservation en cours! Veillez consulter votre historique</b></p>";
+        echo "<p class='btn btn-warning'><b>Désolé ! Vous ne pouvez pas faire deux réservations le même jour. Veillez rééseyer demain. Merci !</b></p>";
       }
   }
 
@@ -117,7 +130,7 @@ class Reservation{
   public function getMyReservList($id_u)
   {
       global $bdd;
-      $req = $bdd->query("SELECT * FROM reservations, places, users WHERE id_us = $id_u AND id_u = $id_u
+      $req = $bdd->query("SELECT * FROM reservations, places, users, couts, categories WHERE id_p = id_place AND id_cat = id_c AND id_us = $id_u AND id_u = $id_u
                           AND id_u = id_us AND id_p = id_pl");
       return $req;
   }
@@ -125,7 +138,7 @@ class Reservation{
   public function getMyCurrentReserv($id_u){
     global $bdd;
     $dateNow = date("j-m-y H:i:s");
-    $req = $bdd->query("SELECT * FROM reservations, places, users WHERE id_us = $id_u AND id_u = $id_u
+    $req = $bdd->query("SELECT * FROM reservations, places, users, couts, categories WHERE id_p = id_place AND id_cat = id_c AND id_us = $id_u AND id_u = $id_u
                         AND id_u = id_us AND id_p = id_pl AND dateFin > '".$dateNow."' ");
     return $req;
   }
@@ -133,14 +146,14 @@ class Reservation{
   public function getCurrentReserv(){
     global $bdd;
     $dateNow = date("j-m-y H:i:s");
-    $req = $bdd->query("SELECT * FROM reservations, places, users WHERE id_p = id_pl AND id_u = id_us AND dateFin > '".$dateNow."' ");
+    $req = $bdd->query("SELECT * FROM reservations, places, users, couts, categories WHERE id_p = id_place AND id_cat = id_c AND id_p = id_pl AND id_u = id_us AND dateFin > '".$dateNow."' ");
     return $req;
   }
 
   public function getEndReserv(){
     global $bdd;
     $dateNow = date("j-m-y H:i:s");
-    $req = $bdd->query("SELECT * FROM reservations, places, users WHERE id_p = id_pl AND id_u = id_us AND dateFin < '".$dateNow."' ");
+    $req = $bdd->query("SELECT * FROM reservations, places, users, couts, categories WHERE id_p = id_place AND id_cat = id_c AND id_p = id_pl AND id_u = id_us AND dateFin < '".$dateNow."' ");
     return $req;
   }
 
@@ -150,6 +163,15 @@ class Reservation{
     $req = $bdd->query("UPDATE reservations SET dateFin = '".$dateNow ."'WHERE id_r = '".$id_r."' ");
     header('location:exportcsv');
     return $req;
+  }
+
+  public function changerMyReserv($id_r, $id_p){
+    global $bdd;
+    $dateNow = date("j-m-y H:i:s");
+    $req = $bdd->prepare("UPDATE reservations SET id_pl = '".$id_p."' WHERE id_r = '".$id_r."' ");
+    $req->execute();
+    header('location:exportcsv');
+    return $req->fetch();
   }
 
   public function ecourterReserv($id_r){
@@ -163,14 +185,14 @@ class Reservation{
   public function getAllReservList()
   {
       global $bdd;
-      $requete = $bdd->query("SELECT * FROM reservations, places, users WHERE id_p = id_pl AND id_u = id_us");
+      $requete = $bdd->query("SELECT * FROM reservations, places, users, couts, categories WHERE id_p = id_place AND id_cat = id_c AND id_p = id_pl AND id_u = id_us");
       return $requete;
   }
 
   public function getListResvRecherche($recherche)
   {
     global $bdd;
-    $req = $bdd->query("SELECT * FROM reservations, places, users where id_p = id_pl AND id_u = id_us
+    $req = $bdd->query("SELECT * FROM reservations, places, users, couts, categories WHERE id_p = id_place AND id_cat = id_c AND id_p = id_pl AND id_u = id_us
                         AND id_us IN (SELECT id_u FROM users where  nom_u = '$recherche' OR prenom = '$recherche')
                         OR id_pl IN (SELECT id_p FROM places where  nom_p = '$recherche')");
     return $req;
@@ -222,13 +244,16 @@ class Reservation{
         // echo "<p class='btn btn-success'><b>Attribution réussi</b></p>";
         // header('Location:place');
         echo "<p class='btn btn-success'><b>Attribution réussi</b></p>";
-        var_dump($res->execute());
+        //var_dump($res->execute());
         return $res->fetch();
       }
       else{
-        $res = $bdd->prepare("UPDATE couts SET id_cat = $c WHERE id_p = $p");
+        $res = $bdd->prepare("UPDATE couts SET id_cat = '".$c."' WHERE id_place = '".$p."'");
         $res->execute();
-        echo "<p class='btn btn-success'><b>Attribution réussi</b></p>";
+        // var_dump($res->execute());
+        echo "<p class='btn btn-success'><b>Attribution réussi!</b></p>";
+        return $res->fetch();
+
       }
   }
 

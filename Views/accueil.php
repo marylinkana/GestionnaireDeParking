@@ -11,6 +11,8 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
            <tr style="text-align: center;">
              <th scope="col" style="text-align: center;" >#</th>
              <th scope="col" style="text-align: center;" >Places</th>
+             <th scope="col" style="text-align: center;" >Catégories</th>
+             <th scope="col" style="text-align: center;" >Coûts</th>
              <th scope="col" style="text-align: center;" >Réserver</th>
            </tr>
          </thead> <?php
@@ -21,6 +23,8 @@ if(isset($_SESSION['connecte']) && $_SESSION['connecte'] == true){?>
               <tr style="border:1px solid black">
                 <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
                 <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['nom_p']?>"/></td>
+                <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['libelle']?>"/></td>
+                <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?=$r['prix'].'€/h'?>"/></td>
                 <td style="background-color:#5bc0de;"><input type="submit" name ="reserver" style=" color: white; " class="btn btn-success" value="Reserver"/></td>
          </form>
        <?php } ?>

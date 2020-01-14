@@ -29,6 +29,7 @@
                   <th scope="col" style="text-align: center;" >#</th>
                   <th scope="col" style="text-align: center;" >Nom</th>
                   <th scope="col" style="text-align: center;" >Places</th>
+                  <th scope="col" style="text-align: center;" >Coûts</th>
                   <th scope="col" style="text-align: center;" >Debut</th>
                   <th scope="col" style="text-align: center;" >Fin</th>
                   <th scope="col" style="text-align: center;" >Modifier</th>
@@ -48,6 +49,7 @@
                        <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
                        <td style="background-color:#5bc0de;"><input type="button" name ="nom_u" style=" color: white; " class="btn btn-info" value="<?= $r['nom_u'] ?>"/></td>
                        <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['nom_p'] ?>"/></td>
+                       <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['prix'].'€/h' ?>"/></td>
                        <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/></td>
                        <td style="background-color:#5bc0de;"><input type="text" name ="new_date_f" style=" color: black; " class="btn btn-light" value="<?= $r['dateFin'] ?>"/></td>
                        <td style="background-color:#5bc0de;">
@@ -89,6 +91,7 @@
                     <th scope="col" style="text-align: center;" >#</th>
                     <th scope="col" style="text-align: center;" >Nom</th>
                     <th scope="col" style="text-align: center;" >Places</th>
+                    <th scope="col" style="text-align: center;" >Coûts</th>
                     <th scope="col" style="text-align: center;" >Debut</th>
                     <th scope="col" style="text-align: center;" >Fin</th>
                     <th scope="col" style="text-align: center;" >Modifier</th>
@@ -108,6 +111,7 @@
                          <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
                          <td style="background-color:#5bc0de;"><input type="button" name ="nom_u" style=" color: white; " class="btn btn-info" value="<?= $r['nom_u'] ?>"/></td>
                          <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['nom_p'] ?>"/></td>
+                         <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['prix'].'€/h' ?>"/></td>
                          <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/></td>
                          <td style="background-color:#5bc0de;"><input type="text" name ="new_date_f" style=" color: black; " class="btn btn-light" value="<?= $r['dateFin'] ?>"/></td>
                          <td style="background-color:#5bc0de;">
@@ -149,6 +153,7 @@
                       <th scope="col" style="text-align: center;" >#</th>
                       <th scope="col" style="text-align: center;" >Nom</th>
                       <th scope="col" style="text-align: center;" >Places</th>
+                      <th scope="col" style="text-align: center;" >Coûts</th>
                       <th scope="col" style="text-align: center;" >Debut</th>
                       <th scope="col" style="text-align: center;" >Fin</th>
                       <th scope="col" style="text-align: center;" >Modifier</th>
@@ -168,6 +173,7 @@
                            <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
                            <td style="background-color:#5bc0de;"><input type="button" name ="nom_u" style=" color: white; " class="btn btn-info" value="<?= $r['nom_u'] ?>"/></td>
                            <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['nom_p'] ?>"/></td>
+                           <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['prix'].'€/h' ?>"/></td>
                            <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/></td>
                            <td style="background-color:#5bc0de;"><input type="text" name ="new_date_f" style=" color: black; " class="btn btn-light" value="<?= $r['dateFin'] ?>"/></td>
                            <td style="background-color:#5bc0de;">
@@ -209,6 +215,7 @@
                      <th scope="col" style="text-align: center;" >#</th>
                      <th scope="col" style="text-align: center;" >Nom</th>
                      <th scope="col" style="text-align: center;" >Places</th>
+                     <th scope="col" style="text-align: center;" >Coûts</th>
                      <th scope="col" style="text-align: center;" >Debut</th>
                      <th scope="col" style="text-align: center;" >Fin</th>
                      <th scope="col" style="text-align: center;" >Modifier</th>
@@ -228,6 +235,7 @@
                           <th scope="row" style="text-align: center; background-color:#5bc0de;" ><input type="button" name ="num" style=" color: white; " class="btn btn-info" value="<?= $v++ ?>"/></th>
                           <td style="background-color:#5bc0de;"><input type="button" name ="nom_u" style=" color: white; " class="btn btn-info" value="<?= $r['nom_u'] ?>"/></td>
                           <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['nom_p'] ?>"/></td>
+                          <td style="background-color:#5bc0de;"><input type="button" name ="nom_p" style=" color: white; " class="btn btn-info" value="<?= $r['prix'].'€/h' ?>"/></td>
                           <td style="background-color:#5bc0de;"><input type="button" name ="date_d" style=" color: white; " class="btn btn-info" value="<?= $r['dateDebut'] ?>"/></td>
                           <td style="background-color:#5bc0de;"><input type="text" name ="new_date_f" style=" color: black; " class="btn btn-light" value="<?= $r['dateFin'] ?>"/></td>
                           <td style="background-color:#5bc0de;">
